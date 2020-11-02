@@ -5,6 +5,7 @@
         <title><!--システム名-->aaa_OnlineTimer</title>
         <script src="/send_url.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="/js/timer.js"></script>
     </head>
 
     <body>
@@ -28,22 +29,7 @@
                 <span class="milliseconds">00</span>
             </div>
 
-            <button id="timer-btn" class="timer-start">開始</button>
-            <script>
-                $("#timer-btn").click(function() {
-                    if($(this).hasClass("timer-start")) {
-                        $(this).addClass("timer-stop");
-                        $(this).removeClass("timer-start");
-                        $(this).text("停止");
-                        console.log("aaaaa");
-                    } else {
-                        $(this).addClass("timer-start"); 
-                        $(this).removeClass("timer-stop");
-                        $(this).text("開始");
-                    }
-                });
-            </script>
-    
+            <button id="timer-btn" class="timer-start">開始</button>    
     
         </div>
 
