@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title><!--システム名-->aaa_sns</title>
+        <script src="/send_url.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <a href="/"><!--システム名-->aaa</a>
+            <% console.log("システム名決まってないよーーーーーーーーー") %>
+        </header>
+
+        <div id="table">
+            <div id="table-title">
+                <div>アカウント管理</div>
+                <a href="" class="new-button">修正する</a>
+                <% console.log("アカウント情報を修正するとこ決まってない") %>
+            </div>
+
+            <div id="table-wrapper">
+                <ul class="table-body">
+                    <% item = {id : 1, name : "aaa"} %>
+                    <% console.log("データベース決まってない") %>
+                    <li>
+                        <div>
+                            <span>id</span>
+                            <span><%= item.id %></span>
+                        </div>
+                        <div>
+                            <span>name</span>
+                            <span><%= item.name %></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
