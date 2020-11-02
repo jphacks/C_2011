@@ -56,6 +56,13 @@ const startStream = async (constraints) => {
   const stream = await navigator.mediaDevices.getUserMedia(constraints);
   handleStream(stream);
 };
+//足した
+const pauseStream = () => {
+  video.pause();
+  play.classList.remove('d-none');
+  pause.classList.add('d-none');
+};
+pause.onclick = pauseStream;
 
 const handleStream = (stream) => {
   video.srcObject = stream;
