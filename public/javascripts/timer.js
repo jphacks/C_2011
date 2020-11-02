@@ -1,22 +1,31 @@
-$("#timer-btn").click(function() {
+$(function() {
+    $(".timer-btn").click(function() {
 
-    // 開始ボタンの時の処理
-    if($(this).hasClass("timer-start")) {
-        // 現在時刻取得
-        var date = new Date()
-        console.log(date.getTime())
+        // 開始ボタンの処理
+        if($(this).attr("id") == "timer-start") {
+            // 現在時刻取得
+            var Start = new Date();
+            var StartTime = Start.getTime();
+        
+            // タイマー表示
+            const Timer = setInterval(function() {
+                var Process = new Date();
+                var ElapsedTime = Process.getTime() - StartTime;
+                console.log(ElapsedTime);
+                $("#timer-end").click(clearInterval(Timer))
+            }, 1000);
 
-        // クラス変更
-        $(this).addClass("timer-stop");
-        $(this).removeClass("timer-start");
-        $(this).text("停止");
-    } 
+            // ボタン変更
+            $(this).hide();
+            $("#timer-end").show();
+        }
+        
+        // 停止ボタンの処理
+        else {
+            // ボタン変更
+            $(this).hide();
+            $("#timer-start").show();
 
-    // 停止ボタンの時の処理
-    else {
-        // クラス変更
-        $(this).addClass("timer-start");
-        $(this).removeClass("timer-stop");
-        $(this).text("開始");
-    }
+        }
+    });
 });
