@@ -25,7 +25,7 @@ $(function() {
             // ボタン変更
             $(this).hide();
             $("#timer-start").show();
-
         }
+
     });
 });
