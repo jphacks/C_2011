@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title><!--システム名-->aaa_OnlineTimer</title>
+        <script src="/send_url.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <a href="/"><!--システム名-->aaa</a>
+            <% console.log("システム名決まってないよーーーーーーーーー") %>
+        </header>
+
+        <div id="timer">
+            <div id="timer-title">
+                <div>オンラインタイマー</div>
+            </div>
+
+            <div id="timer-body">
+                <span class="hours">00</span>
+                <span>:</span>
+                <span class="minutes">00</span>
+                <span>:</span>
+                <span class="seconds">00</span>
+                <span>.</span>
+                <span class="milliseconds">00</span>
+            </div>
+
+            <button id="timer-btn" class="timer-start">開始</button>
+            <script>
+                $("#timer-btn").click(function() {
+                    if($(this).hasClass("timer-start")) {
+                        $(this).addClass("timer-stop");
+                        $(this).removeClass("timer-start");
+                        $(this).text("停止");
+                        console.log("aaaaa");
+                    } else {
+                        $(this).addClass("timer-start"); 
+                        $(this).removeClass("timer-stop");
+                        $(this).text("開始");
+                    }
+                });
+            </script>
+    
+    
+        </div>
+
+    </body>
+</html>
