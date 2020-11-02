@@ -62,8 +62,18 @@ const pauseStream = () => {
   play.classList.remove('d-none');
   pause.classList.add('d-none');
 };
-pause.onclick = pauseStream;
 
+const doScreenshot = () => {
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+  screenshotImage.src = canvas.toDataURL('image/webp');
+  screenshotImage.classList.remove('d-none');
+};
+
+pause.onclick = pauseStream;
+screenshot.onclick = doScreenshot;
+//11/2にココまで足した
 const handleStream = (stream) => {
   video.srcObject = stream;
   play.classList.add('d-none');
