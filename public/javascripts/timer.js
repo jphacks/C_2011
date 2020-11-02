@@ -12,7 +12,7 @@ $(function() {
                 var Process = new Date();
                 var ElapsedTime = Process.getTime() - StartTime;
                 console.log(ElapsedTime);
-                $("#timer-end").click(clearInterval(Timer))
+                $("#timer-end").click(() => clearInterval(Timer))
             }, 1000);
 
             // ボタン変更
