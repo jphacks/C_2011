@@ -1,32 +1,80 @@
 $(function() {
     $(".timer-btn").click(function() {
+        switch ($(this).attr("id")) {
 
-        // 開始ボタンの処理
-        if($(this).attr("id") == "timer-start") {
-            // 開始ボタンを押した時の時刻取得
-            var Start = new Date();
-            StartTime = Start.getTime();
+            // スタート処理
+            case "timer-start":
+                // スタートボタンを押した時の時刻取得
+                var StartDate = new Date();
+                StartTime = StartDate.getTime();
         
-            // タイマー表示
-            IntervalTimer(StartTime)
+                // タイマー表示
+                IntervalTimer(StartTime)
 
-            // ボタン変更
-            $(this).hide();
-            $("#timer-end").show();
-        }
+                // ボタン変更
+                $(this).hide();
+                $("#timer-stop").show();
+                $("#timer-split").show();
+                break;
 
-        // 停止ボタンの処理
-        else {
-            // 停止ボタンを押した時の時刻取得
-            var End = new Date();
-            var EndTime = End.getTime();
+            // ストップ処理
+            case "timer-stop":
+                // ストップボタンを押した時の時刻取得
+                var StopDate = new Date();
+                OffsetTime = StopDate.getTime() - StartTime
 
-            // タイマー表示
-            DisplayTimer(EndTime - StartTime);
+                // タイマー表示
+                DisplayTimer(OffsetTime);
 
-            // ボタン変更
-            $(this).hide();
-            $("#timer-start").show();
+                // ボタン変更
+                $(this).hide();
+                $("#timer-split").hide();
+                $("#timer-restart").show();
+                $("#timer-reset").show();
+                break;
+
+            // スプリット処理
+            case "timer-split":
+                // スプリットボタンを押した時の時刻取得
+                var SplitDate = new Date();
+                var SplitTime = SplitDate.getTime() - StartTime;
+                var SplitTime_ = String(Math.floor(SplitTime / 10000000) % 10) + ":"
+                                + String(ZeroPadding(Math.floor(SplitTime / 100000) % 100)) + ":"
+                                + String(ZeroPadding(Math.floor(SplitTime / 1000) % 100)) + "."
+                                + String(ZeroPadding(Math.floor(SplitTime / 10) % 100))
+
+                // ログに追加
+                $("#timer-log").append("<div class='SplitTime'>" + SplitTime_ + "</div>");
+                break;
+
+            // リスタート処理
+            case "timer-restart":
+                // オフセットを考慮したリスタートボタンを押した時刻取得
+                var StartDate = new Date();
+                StartTime = StartDate.getTime() - OffsetTime;
+
+                // タイマー表示
+                IntervalTimer(StartTime);
+
+                // ボタン変更
+                $(this).hide();
+                $("#timer-split").hide();
+                $("#timer-stop").show();
+                break;
+
+            // リセット処理
+            case "timer-reset":
+                // タイマー表示
+                DisplayTimer(0);
+
+                // ログの消去
+                $("#timer-log").html("");
+
+                // ボタン変更
+                $(this).hide();
+                $("#timer-restart").hide();
+                $("#timer-start").show();
+                break;
         }
     });
 
@@ -41,8 +89,8 @@ $(function() {
             // ディスプレイ表示
             DisplayTimer(ElapsedTime);
     
-            // 停止ボタンの処理
-            $("#timer-end").click(() => clearInterval(Timer))
+            // ストップ処理
+            $("#timer-stop").click(() => clearInterval(Timer))
         }, 43);
     }
     
@@ -58,6 +106,5 @@ $(function() {
     function ZeroPadding(num){
         return ('00' + num).slice(-2);
     }
-    
     
 });
