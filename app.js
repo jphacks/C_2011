@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 app.use(express.static('public'));
+app.use(express.urlencoded({extended: false}));
 
 app.get('/', (req, res) => {
     res.render('index.ejs');
@@ -16,11 +17,11 @@ app.get('/sns_list', (req, res) => {
 });
 
 app.get('/timer', (req, res) => {
-    res.render('timer.ejs');
+    res.render('timer.ejs', {start : ""});
 });
 
 app.post('/timer', (req, res) => {
-    res.render('timer.ejs', { start: req.body.startTime })
+    res.render('timer.ejs', { start : req.body.startTime })
     console.log(req.body.startTime);
 })
 
