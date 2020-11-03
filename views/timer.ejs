@@ -29,15 +29,29 @@
                 <span class="milliseconds">00</span>
             </div>
 
-            <button class="timer-btn" id="timer-start">開始</button>
-            <button class="timer-btn" id="timer-end">停止</button>
+            <button class="timer-btn" id="timer-start">スタート</button>
+            <button class="timer-btn" id="timer-stop">ストップ</button>
+            <button class="timer-btn" id="timer-split">スプリット</button>
+            <button class="timer-btn" id="timer-restart">リスタート</button>
+            <button class="timer-btn" id="timer-reset">リセット</button>
             <style>
-                #timer-end {
+                #timer-stop {
+                    display : none ;
+                }
+                #timer-restart {
+                    display : none ;
+                }
+                #timer-split {
+                    display : none ;
+                }
+                #timer-reset {
                     display : none ;
                 }
             </style>
     
         </div>
+
+        <div id="timer-log"></div>
 
     </body>
 </html>
