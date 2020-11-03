@@ -1,12 +1,24 @@
+const functions = require('firebase-functions');
+
+// // Create and Deploy Your First Cloud Functions
+// // https://firebase.google.com/docs/functions/write-firebase-functions
+//
+// exports.helloWorld = functions.https.onRequest((request, response) => {
+//   functions.logger.info("Hello logs!", {structuredData: true});
+//   response.send("Hello from Firebase!");
+// });
 const express = require('express');
 const app = express();
 
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
 
-app.set("views","functions/views");
 app.get('/', (req, res) => {
     res.render('index.ejs');
+});
+
+app.get('/fireTest', (req, res) => {
+    res.render('fireTest.ejs');
 });
 
 app.get('/rec_list', (req, res) => {
@@ -34,12 +46,4 @@ app.get('/goal_list', (req, res) => {
     res.render('goal_list.ejs');
 });
 
-app.get('/fireTest', (req, res) => {
-    res.render('fireTest.ejs');
-});
-
-// サーバーを起動するコードを貼り付けてください
-const port = 3000;
-app.listen(port,()=>{
-    console.log("Open->http://localhost:"+port);
-});
+exports.app = functions.https.onRequest(app);
