@@ -29,11 +29,14 @@
                 <span class="milliseconds">00</span>
             </div>
 
-            <button class="timer-btn" id="timer-start">スタート</button>
-            <button class="timer-btn" id="timer-stop">ストップ</button>
-            <button class="timer-btn" id="timer-split">スプリット</button>
-            <button class="timer-btn" id="timer-restart">リスタート</button>
-            <button class="timer-btn" id="timer-reset">リセット</button>
+            <form action="/timer" method="post">
+                <input id="startTime_rec" name="startTime" type="text" value="<%= start %>">
+                <input type="submit" value="スタート" class="timer-btn" id="timer-start">
+            </form>
+            <button class="timer-btn" id="timer-stop"><input value="ストップ"></button>
+            <button class="timer-btn" id="timer-split"><input value="スプリット"></button>
+            <button class="timer-btn" id="timer-restart"><input value="リスタート"></button>
+            <button class="timer-btn" id="timer-reset"><input value="リセット"></button>
             <style>
                 #timer-stop {
                     display : none ;
@@ -50,8 +53,6 @@
             </style>
     
         </div>
-
-        <div id="timer-log"></div>
 
     </body>
 </html>

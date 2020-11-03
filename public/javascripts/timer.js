@@ -7,6 +7,9 @@ $(function() {
                 // スタートボタンを押した時の時刻取得
                 var StartDate = new Date();
                 StartTime = StartDate.getTime();
+                
+                // form value属性を変更
+                //$("#startTime_rec").attr("value", StartTime)
         
                 // タイマー表示
                 IntervalTimer(StartTime)
