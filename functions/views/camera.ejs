@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <a href="/"><!--システム名-->aaa</a>
-    <% console.log("システム名決まってないよーーーーーーーーー") %>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -15,7 +13,9 @@
 <body>
 <div class="display-cover">
     <video calss="video" autoplay></video>
-    <canvas class="d-none"></canvas>    
+    <canvas class="d-none"></canvas>
+    <a class="btn btn--orange">bbb</a>
+    <% console.log("システム名決まってないよーーーーーーーーー") %>
     <div class="video-options">
         <select name="" id="" class="custom-select">
             <option value="">Select camera</option>
@@ -29,6 +29,7 @@
     </div>
 </div>
 <script src="https://unpkg.com/feather-icons"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
 <script src="javascripts/camera.js"></script>
 </body>
 </html>
