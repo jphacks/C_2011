@@ -15,93 +15,110 @@ const ref = database.ref('timer_management');
 
 
 $(function () {
-    // スタート処理
-    $("#timer-start").click(function () {
-        // スタートボタンを押した時の時刻取得
-        var StartDate = new Date();
-        StartTime = StartDate.getTime();
-
+    /////////// スタート処理 ///////////
+    function TimerStartFunction(timing) {
         // 登録処理
-        const postAction = () => {
-            const start = $("#startTime_rec").val(StartTime);
-            ref.push({
-                start: StartTime
-            });
-        };
-        postAction();
-
+        push_DB(state = "start", time = timing);
         // タイマー表示
-        IntervalTimer(StartTime)
-
+        IntervalTimer(timing)
         // ボタン変更
-        $(this).hide();
+        $("#timer-start").hide();
         $("#timer-stop").show();
         $("#timer-split").show();
-    })
+    };
 
-    // ストップ処理
-    $("#timer-stop").click(function () {
-        // ストップボタンを押した時の時刻取得
-        var StopDate = new Date();
-        OffsetTime = StopDate.getTime() - StartTime
+    // スタートボタンを押した時の処理
+    $("#timer-start").click(function () {
+        StartTime = new Date().getTime();
+        TimerStartFunction(StartTime);
+    });
 
+
+    /////////// ストップ処理 ///////////
+    function TimerStopFunction(timing) {
+        // 登録処理
+        delete_DB();
+        push_DB(state = "stop", time = StartTime);
         // タイマー表示
-        DisplayTimer(OffsetTime);
-
+        DisplayTimer(timing);
         // ボタン変更
-        $(this).hide();
+        $("#timer-stop").hide();
         $("#timer-split").hide();
         $("#timer-restart").show();
         $("#timer-reset").show();
-    })
+    };
 
-    // スプリット処理
-    $("#timer-split").click(function () {
-        // スプリットボタンを押した時の時刻取得
-        var SplitDate = new Date();
-        var SplitTime = SplitDate.getTime() - StartTime;
+    // ストップボタンを押した時の処理
+    $("#timer-stop").click(function () {
+        OffsetTime = new Date().getTime() - StartTime;
+        TimerStopFunction(OffsetTime);
+    });
+
+
+    /////////// スプリット処理　///////////
+    function TimerSplitFunction(SplitTime) {
+        // スプリットタイム
         var SplitTime_ = String(Math.floor(SplitTime / 10000000) % 10) + ":"
             + String(ZeroPadding(Math.floor(SplitTime / 100000) % 100)) + ":"
             + String(ZeroPadding(Math.floor(SplitTime / 1000) % 100)) + "."
-            + String(ZeroPadding(Math.floor(SplitTime / 10) % 100))
-
+            + String(ZeroPadding(Math.floor(SplitTime / 10) % 100));
         // ログに追加
         $("#timer-log").append("<div class='SplitTime'>" + SplitTime_ + "</div>");
-    })
+    };
 
-    // リスタート処理
-    $("#timer-restart").click(function () {
-        // オフセットを考慮したリスタートボタンを押した時刻取得
-        var StartDate = new Date();
-        StartTime = StartDate.getTime() - OffsetTime;
+    // スプリットボタンを押した時の時刻取得
+    $("#timer-split").click(function () {
+        var SplitTime = new Date().getTime() - StartTime;
+        TimerSplitFunction(SplitTime)
+    });
 
+
+    /////////// リスタート処理　///////////
+    function TimerRestartFunction(timing) {
+        // 登録処理
+        delete_DB();
+        push_DB(state = "start", time = timing);
         // タイマー表示
-        IntervalTimer(StartTime);
-
+        IntervalTimer(timing);
         // ボタン変更
-        $(this).hide();
+        $("#timer-restart").hide();
         $("#timer-reset").hide();
         $("#timer-split").show();
         $("#timer-stop").show();
+    };
+
+    // リスタートボタンを押した時の処理
+    $("#timer-restart").click(function () {
+        StartTime = new Date().getTime() - OffsetTime;
+        TimerRestartFunction(StartTime);
     })
 
-    // リセット処理
-    $("#timer-reset").click(function () {
+
+    /////////// リセット処理 ///////////
+    function TimerResetFunction() {
         // タイマー表示
         DisplayTimer(0);
-
         // ログの消去
         $("#timer-log").html("");
-
         // データベースから削除
-        const id = $("#StartTime-log").find("div").attr("id");
-        firebase.database().ref('timer_management/' + id).remove();
-
+        delete_DB();
         // ボタン変更
-        $(this).hide();
+        $("#timer-reset").hide();
         $("#timer-restart").hide();
         $("#timer-start").show();
-    })
+    }
+
+    // リセットボタンを押した時の処理
+    $("#timer-reset").click(function () {
+        TimerResetFunction();
+    });
+
+
+    /////////// 同期処理 ///////////
+    $(".timer-sync").click(function() {
+        var timing = $(this).parent().attr("div").text();
+        TimerStartFunction(timing);
+    });
 
 
     // タイマー表示関数(43msごとに処理してます。43はテキトーに素数当てはめてます)
@@ -110,10 +127,8 @@ $(function () {
             // 経過時間取得
             var Process = new Date();
             var ElapsedTime = Process.getTime() - StartTime;
-
             // ディスプレイ表示
             DisplayTimer(ElapsedTime);
-
             // ストップ処理
             $("#timer-stop").click(() => clearInterval(Timer))
         }, 43);
@@ -132,11 +147,28 @@ $(function () {
         return ('00' + num).slice(-2);
     }
 
+    // データベース登録
+    const push_DB = (state, time) => {
+        ref.push({
+            state: state,
+            start: time
+        });
+    };
+
+    // データベースの削除
+    const delete_DB = () => {
+        const id = $("#StartTime-log").find("div").attr("id");
+        firebase.database().ref('timer_management/' + id).remove();
+    };
+
     // TODOを表示する
     const dispTodo = (time) => {
-        // TODO内容をリストの一番上に挿入
-        const todo_html = time.value.start;
-        $("#StartTime-log").append(`<div id="${time.id}">${todo_html}</div>`);
+        if (time.value.state == "start") {
+            const todo_html = time.value.start;
+            $("#StartTime-log").append(`
+                <div id="${time.id}">${todo_html}<button class="timer-sync">同期</button></div>
+            `);
+        }
     }
 
     // データベースが追加された時の処理
@@ -148,9 +180,8 @@ $(function () {
     });
 
     // データベースが削除された時の処理
-    ref.on("child_removed", (snapshot) => {
-        $("#" + snapshot.key).remove();
+    ref.on("child_removed", (item) => {
+        $("#" + item.key).remove();
     });
-
 
 });
