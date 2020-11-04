@@ -1,24 +1,25 @@
 {
-  "name": "c_2011",
-  "version": "1.0.0",
-  "description": "jphacks2020_c_2011",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jphacks/C_2011.git"
-  },
-  "author": "ohara",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jphacks/C_2011/issues"
-  },
-  "homepage": "https://github.com/jphacks/C_2011#readme",
-  "dependencies": {
-    "ejs": "^3.1.5",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.6"
+    "name": "c_2011",
+    "version": "1.0.0",
+    "description": "jphacks2020_c_2011",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/jphacks/C_2011.git"
+    },
+    "author": "ohara",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/jphacks/C_2011/issues"
+    },
+    "homepage": "https://github.com/jphacks/C_2011#readme",
+    "dependencies": {
+      "ejs": "^3.1.5",
+      "express": "^4.17.1",
+      "nodemon": "^2.0.6"
+    }
   }
-}
+  
