@@ -115,12 +115,59 @@ $(function () {
 
 
     /////////// 同期処理 ///////////
-    $(".timer-sync").click(function() {
-        var timing = $(this).parent().attr("div").text();
-        TimerStartFunction(timing);
+    // 同期ボタンを押した時の処理
+    $(document).on("click", ".timer-sync", function () {
+        // 時間取得
+        StartTime = $(this).parent().find("div").text();
+        // タイマー表示
+        IntervalTimer(StartTime);
+        // ボタン変更
+        $("#timer-start").hide();
+        $("#timer-stop").show();
+        $("#timer-split").show();
     });
 
 
+    /////////// データベース関連の関数 ///////////
+    // データベース登録
+    const push_DB = (state, time) => {
+        ref.push({
+            state: state,
+            start: time
+        });
+    };
+
+    // データベースの削除
+    const delete_DB = () => {
+        const id = $("#StartTime-log").find("div").attr("id");
+        firebase.database().ref('timer_management/' + id).remove();
+    };
+
+    // TODOを表示する
+    const dispTodo = (time) => {
+        if (time.value.state == "start") {
+            const todo_html = time.value.start;
+            $("#StartTime-log").append(`
+                <div id="${time.id}"><div>${todo_html}</div><button class="timer-sync">同期</button></div>
+            `);
+        }
+    }
+
+    // データベースが追加された時の処理
+    ref.on("child_added", (item) => {
+        dispTodo({
+            id: item.key,
+            value: item.val()
+        });
+    });
+
+    // データベースが削除された時の処理
+    ref.on("child_removed", (item) => {
+        $("#" + item.key).remove();
+    });
+
+
+    /////////// その他の関数 ///////////
     // タイマー表示関数(43msごとに処理してます。43はテキトーに素数当てはめてます)
     function IntervalTimer(StartTime) {
         const Timer = setInterval(function () {
@@ -146,42 +193,5 @@ $(function () {
     function ZeroPadding(num) {
         return ('00' + num).slice(-2);
     }
-
-    // データベース登録
-    const push_DB = (state, time) => {
-        ref.push({
-            state: state,
-            start: time
-        });
-    };
-
-    // データベースの削除
-    const delete_DB = () => {
-        const id = $("#StartTime-log").find("div").attr("id");
-        firebase.database().ref('timer_management/' + id).remove();
-    };
-
-    // TODOを表示する
-    const dispTodo = (time) => {
-        if (time.value.state == "start") {
-            const todo_html = time.value.start;
-            $("#StartTime-log").append(`
-                <div id="${time.id}">${todo_html}<button class="timer-sync">同期</button></div>
-            `);
-        }
-    }
-
-    // データベースが追加された時の処理
-    ref.on("child_added", (item) => {
-        dispTodo({
-            id: item.key,
-            value: item.val()
-        });
-    });
-
-    // データベースが削除された時の処理
-    ref.on("child_removed", (item) => {
-        $("#" + item.key).remove();
-    });
 
 });
