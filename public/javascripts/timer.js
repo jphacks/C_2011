@@ -1,5 +1,20 @@
-$(function() {
-    $(".timer-btn").click(function() {
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyDyvg2XGshl7PjbuRegWiIF2TelusS_jWg",
+    authDomain: "c2011-webapp.firebaseapp.com",
+    databaseURL: "https://c2011-webapp.firebaseio.com",
+    projectId: "c2011-webapp",
+    storageBucket: "c2011-webapp.appspot.com",
+    messagingSenderId: "1006358141829",
+    appId: "1:1006358141829:web:3a597f1a2990b68d1d82ec"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+const ref = database.ref('timer_management');
+
+$(function () {
+    $(".timer-btn").click(function () {
         switch ($(this).attr("id")) {
 
             // スタート処理
@@ -7,20 +22,20 @@ $(function() {
                 // スタートボタンを押した時の時刻取得
                 var StartDate = new Date();
                 StartTime = StartDate.getTime();
-                
+
                 // 登録処理
                 const postAction = () => {
                     const start = $("#startTime_rec").val(StartTime);
                     ref.push({
-                        start : StartTime
+                        start: StartTime
                     });
                 };
                 postAction();
                 // 初期表示と登録後のコールバック
                 ref.on("child_added", (item) => {
                     dispTodo({
-                        id : item.key,
-                        value : item.val()
+                        id: item.key,
+                        value: item.val()
                     });
                 });
                 // TODOを表示する
@@ -33,7 +48,7 @@ $(function() {
                 $(document).on('click', '.done', (event) => {
                     const id = $(event.target).closest('div').attr('id');
                     console.log(id)
-                    firebase.database().ref('todo/' + id).remove();
+                    firebase.database().ref('timer_management/' + id).remove();
                 });
                 // 削除
                 ref.on("child_removed", (snapshot) => {
@@ -72,9 +87,9 @@ $(function() {
                 var SplitDate = new Date();
                 var SplitTime = SplitDate.getTime() - StartTime;
                 var SplitTime_ = String(Math.floor(SplitTime / 10000000) % 10) + ":"
-                                + String(ZeroPadding(Math.floor(SplitTime / 100000) % 100)) + ":"
-                                + String(ZeroPadding(Math.floor(SplitTime / 1000) % 100)) + "."
-                                + String(ZeroPadding(Math.floor(SplitTime / 10) % 100))
+                    + String(ZeroPadding(Math.floor(SplitTime / 100000) % 100)) + ":"
+                    + String(ZeroPadding(Math.floor(SplitTime / 1000) % 100)) + "."
+                    + String(ZeroPadding(Math.floor(SplitTime / 10) % 100))
 
                 // ログに追加
                 $("#timer-log").append("<div class='SplitTime'>" + SplitTime_ + "</div>");
@@ -115,19 +130,19 @@ $(function() {
 
     // タイマー表示関数(43msごとに処理してます。43はテキトーに素数当てはめてます)
     function IntervalTimer(StartTime) {
-        const Timer = setInterval(function() {
+        const Timer = setInterval(function () {
             // 経過時間取得
             var Process = new Date();
             var ElapsedTime = Process.getTime() - StartTime;
-    
+
             // ディスプレイ表示
             DisplayTimer(ElapsedTime);
-    
+
             // ストップ処理
             $("#timer-stop").click(() => clearInterval(Timer))
         }, 43);
     }
-    
+
     // タイマーのディスプレイ表示
     function DisplayTimer(ElapsedTime) {
         $(".milliseconds").text(ZeroPadding(Math.floor(ElapsedTime / 10) % 100));
@@ -135,10 +150,10 @@ $(function() {
         $(".minutes").text(ZeroPadding(Math.floor(ElapsedTime / 100000) % 100));
         $(".hours").text(Math.floor(ElapsedTime / 10000000) % 10);
     }
-    
+
     // ゼロで桁埋めする関数
-    function ZeroPadding(num){
+    function ZeroPadding(num) {
         return ('00' + num).slice(-2);
     }
-    
+
 });
