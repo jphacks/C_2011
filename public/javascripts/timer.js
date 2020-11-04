@@ -31,6 +31,12 @@ $(function () {
                     });
                 };
                 postAction();
+                // TODOを表示する
+                const dispTodo = (time) => {
+                    // TODO内容をリストの一番上に挿入
+                    const todo_html = time.value.start;
+                    $("#StartTime-log").append(`<div id="${time.id}">${todo_html}<button class="done">DONE</button></div>`);
+                }
                 // 初期表示と登録後のコールバック
                 ref.on("child_added", (item) => {
                     dispTodo({
@@ -38,12 +44,7 @@ $(function () {
                         value: item.val()
                     });
                 });
-                // TODOを表示する
-                const dispTodo = (time) => {
-                    // TODO内容をリストの一番上に挿入
-                    const todo_html = time.value.start;
-                    $("#StartTime-log").append(`<div id="${time.id}">${todo_html}<button class="done">DONE</button></div>`);
-                }
+                
                 // 削除処理
                 $(document).on('click', '.done', (event) => {
                     const id = $(event.target).closest('div').attr('id');
