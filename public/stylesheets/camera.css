@@ -21,7 +21,7 @@
 
 .video {
     height:100vh;
-    width:auto;
+    width:auto 100%;
     background: rgba(0, 0, 0, 0);
     background-size: cover;
     background-position: center;
@@ -43,28 +43,20 @@
 }
 
 .controls > button{
-    opacity:0.2;
-    width: 400px;
-    height: 400px;
+    opacity:0;
+    width: 150px;
+    height: 150px;
     text-align: center;
     border-radius: 100%;
     margin: 0 6px;
     background: transparent;
 }
-.controls > button >svg {
-    opacity:0.2;
-    height: 200px;
-    width: 180px;
+.controls > button svg {
+    height: 100px;
+    width: 80px;
 }
 
-
-.cintrols > button:hover{
-    opacity:1;
-}
-.controls > button:hover >svg {
-    opacity:1;
-    height: 200px;
-    width: 180px;
+.controls > button:hover svg {
     color: white !important;
 }
 
@@ -78,43 +70,52 @@
     }
 }
 
-.controls > button:active > svg{
+.controls > button:active svg{
     opacity:1;
-    height: 200px;
-    width: 180px;
     text-align: center;
     margin: 0 auto;
     padding: 0;
 }
 
 .controls button:nth-child(1) {
+    width: 400px;
+    height: 400px;
     border: 2px solid #D2002E;
 }
 
 .controls button:nth-child(1) svg {
+    height: 200px;
+    width: 180px;
     color: #D2002E;
 }
 
 .controls button:nth-child(2) {
+    width: 400px;
+    height: 400px;
     border: 2px solid #008496;
 }
 
 .controls button:nth-child(2) svg {
+    height: 200px;
+    width: 180px;
     color: #008496;
 }
 
 .controls button:nth-child(3) {
+    opacity:1;
+    position: absolute;
+    top:-10px; 
+    right:600px; 
     border: 2px solid #00B541;
 }
 
 .controls button:nth-child(3) svg {
+    opacity:1;
     color: #00B541;
 }
 
 .controls > button:active {
     opacity:1;
-    width: 400px;
-    height: 400px;
     text-align: center;
     border-radius: 100%;
     margin: 0 6px;
@@ -122,8 +123,8 @@
 }
 
 .controls > button:hover svg {
-    opacity:1;
-    height: 200px;
-    width: 180px;
     color: white;
+}
+.controls >button:hover{
+    opacity:1;
 }
