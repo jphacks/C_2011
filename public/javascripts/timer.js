@@ -15,6 +15,7 @@ const ref = database.ref('timer_management');
 
 
 $(function () {
+    // スタート処理
     $("#timer-start").click(function () {
         // スタートボタンを押した時の時刻取得
         var StartDate = new Date();
@@ -28,31 +29,6 @@ $(function () {
             });
         };
         postAction();
-        // TODOを表示する
-        const dispTodo = (time) => {
-            // TODO内容をリストの一番上に挿入
-            const todo_html = time.value.start;
-            $("#StartTime-log").append(`<div id="${time.id}">${todo_html}<button class="done">DONE</button></div>`);
-        }
-        // 初期表示と登録後のコールバック
-        ref.on("child_added", (item) => {
-            dispTodo({
-                id: item.key,
-                value: item.val()
-            });
-        });
-
-        // 削除処理
-        $(document).on('click', '.done', (event) => {
-            const id = $(event.target).closest('div').attr('id');
-            console.log(id)
-            firebase.database().ref('timer_management/' + id).remove();
-        });
-        // 削除
-        ref.on("child_removed", (snapshot) => {
-            $("#" + snapshot.key).remove();
-        });
-
 
         // タイマー表示
         IntervalTimer(StartTime)
@@ -63,7 +39,7 @@ $(function () {
         $("#timer-split").show();
     })
 
-
+    // ストップ処理
     $("#timer-stop").click(function () {
         // ストップボタンを押した時の時刻取得
         var StopDate = new Date();
@@ -79,7 +55,7 @@ $(function () {
         $("#timer-reset").show();
     })
 
-
+    // スプリット処理
     $("#timer-split").click(function () {
         // スプリットボタンを押した時の時刻取得
         var SplitDate = new Date();
@@ -93,7 +69,7 @@ $(function () {
         $("#timer-log").append("<div class='SplitTime'>" + SplitTime_ + "</div>");
     })
 
-
+    // リスタート処理
     $("#timer-restart").click(function () {
         // オフセットを考慮したリスタートボタンを押した時刻取得
         var StartDate = new Date();
@@ -109,13 +85,17 @@ $(function () {
         $("#timer-stop").show();
     })
 
-    
+    // リセット処理
     $("#timer-reset").click(function () {
         // タイマー表示
         DisplayTimer(0);
 
         // ログの消去
         $("#timer-log").html("");
+
+        // データベースから削除
+        const id = $("#StartTime-log").find("div").attr("id");
+        firebase.database().ref('timer_management/' + id).remove();
 
         // ボタン変更
         $(this).hide();
@@ -151,5 +131,26 @@ $(function () {
     function ZeroPadding(num) {
         return ('00' + num).slice(-2);
     }
+
+    // TODOを表示する
+    const dispTodo = (time) => {
+        // TODO内容をリストの一番上に挿入
+        const todo_html = time.value.start;
+        $("#StartTime-log").append(`<div id="${time.id}">${todo_html}</div>`);
+    }
+
+    // データベースが追加された時の処理
+    ref.on("child_added", (item) => {
+        dispTodo({
+            id: item.key,
+            value: item.val()
+        });
+    });
+
+    // データベースが削除された時の処理
+    ref.on("child_removed", (snapshot) => {
+        $("#" + snapshot.key).remove();
+    });
+
 
 });
