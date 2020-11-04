@@ -8,9 +8,39 @@ $(function() {
                 var StartDate = new Date();
                 StartTime = StartDate.getTime();
                 
-                // form value属性を変更
-                //$("#startTime_rec").attr("value", StartTime)
-        
+                // 登録処理
+                const postAction = () => {
+                    const start = $("#startTime_rec").val(StartTime);
+                    ref.push({
+                        start : StartTime
+                    });
+                };
+                postAction();
+                // 初期表示と登録後のコールバック
+                ref.on("child_added", (item) => {
+                    dispTodo({
+                        id : item.key,
+                        value : item.val()
+                    });
+                });
+                // TODOを表示する
+                const dispTodo = (time) => {
+                    // TODO内容をリストの一番上に挿入
+                    const todo_html = time.value.start;
+                    $("#StartTime-log").append(`<div id="${time.id}">${todo_html}<button class="done">DONE</button></div>`);
+                }
+                // 削除処理
+                $(document).on('click', '.done', (event) => {
+                    const id = $(event.target).closest('div').attr('id');
+                    console.log(id)
+                    firebase.database().ref('todo/' + id).remove();
+                });
+                // 削除
+                ref.on("child_removed", (snapshot) => {
+                    $("#" + snapshot.key).remove();
+                });
+
+
                 // タイマー表示
                 IntervalTimer(StartTime)
 
@@ -61,7 +91,8 @@ $(function() {
 
                 // ボタン変更
                 $(this).hide();
-                $("#timer-split").hide();
+                $("#timer-reset").hide();
+                $("#timer-split").show();
                 $("#timer-stop").show();
                 break;
 
