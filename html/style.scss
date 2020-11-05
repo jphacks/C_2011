@@ -1,0 +1,466 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+img {
+  width: 100%;
+}
+
+
+/* 付加 */
+
+html,body {
+  font-family:  "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ ゴシック" , "MS Gothic" , sans-serif;
+}
+
+.wrap {
+  overflow: hidden !important;
+  background-image: url(img/20201105_075338519_iOS.JPG);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.pc-none {
+  display: none !important;
+}
+
+@media (max-width: 960px) {
+  .sp-none {
+    display: none !important;
+  }
+  .pc-none {
+    display: block !important;
+  }
+}
+
+.stop {
+  overflow: hidden !important;
+}
+
+
+.show {
+  opacity: 1 !important;
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0) !important;
+  pointer-events: stroke !important;
+}
+
+
+
+.logo {
+  width: 120px;
+  height: 80px;
+  background-color: aqua;
+  text-align: center;
+  line-height: 80px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+.setting {
+  color: gray;
+  padding-top: 10px;
+  position: fixed;
+  top: 25px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.mypage {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-image: url(img/20201105_075338519_iOS.JPG);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: fixed;
+  top: 25px;
+  right: 80px;
+  cursor: pointer;
+}
+
+.menu {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 40px;
+  z-index: 101;
+  span {
+    position: absolute;
+    height: 2px;
+    width: 50px;
+    border-radius: 3px;
+    background: black;
+    display: block;
+    left: 50%;
+    top: 40%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    transition: .3s ease;
+    &::before {
+      position: absolute;
+      height: 2px;
+      width: 40px;
+      border-radius: 3px;
+      background:black;
+      display: block;
+      content: '';
+      bottom: -10px;
+      transition: .3s ease;
+    }
+  }
+  &:hover span {
+    opacity: 0.8;
+  }
+  &:hover span::before {
+    width: 50px;
+    opacity: 0.8;
+  }
+}
+.menu-close {
+  span {
+    top: 48%;
+    -webkit-transform: translateX(-50%) rotate(45deg);
+    -ms-transform: translateX(-50%) rotate(45deg);
+    transform: translateX(-50%) rotate(45deg);
+    &::before {
+      width: 50px;
+      -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+      bottom: 10%;
+    }
+    &:hover span {
+      opacity: 0.8;
+    }
+    &:hover span::before {
+      opacity: 0.8;
+    }
+  }
+}
+
+.sp-header {
+  width: 60%;
+  max-width: 400px;
+  height: 100vh;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+  transition: all .7s ease-in-out;
+  .sp-header-nav {
+    position: relative;
+    padding-top: 100px;
+    li {
+      width: 70%;
+      max-width: 300px;
+      margin: 15px 0;
+      box-sizing: border-box;
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 10px 40px;
+        font-size: 16px;
+      }
+    }
+  }
+  .setting-spnav {
+    color: gray;
+    padding-top: 10px;
+    position: fixed;
+    bottom: 35px;
+    right: 20px;
+    cursor: pointer;
+  }
+  .mypage-spnav {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: url(img/20201105_075338519_iOS.JPG);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+    bottom: 25px;
+    right: 80px;
+    cursor: pointer;
+  }
+}
+
+.container {
+  width: 80%;
+  max-width: 1400px;
+  height: 100vh;
+  display: flex;
+  margin: 0 auto;
+}
+
+.manage-box {
+  width: 60%;
+  position: relative;
+  img {
+    width: 80%;
+    max-width: 450px;
+    display: block;
+    margin: 20% auto 0;
+  }
+  .mana-balloon {
+    width: 90%;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.534);
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    bottom: 50px;
+    padding: 30px 10px;
+    .mana-text {
+      color: white;
+      font-size: 18px;
+      line-height: 1.6rem;
+    }
+    &:before {
+      border-style: solid;
+      border-width: 0 10px 30px 70px;
+      border-color: transparent transparent rgba(0, 0, 0, 0.534) transparent;
+      content: "";
+      position: absolute;
+      top: -30px; left: 10%;
+      margin-left: -9px;
+      display: block;
+      width: 0px;
+      height: 0px;
+      z-index: 0;
+    }
+  }
+}
+
+.nav-box {
+  width: 40%;
+  position: relative;
+  .main-btns {
+    width: 100%;
+    height: 440px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    div {
+      width: 70%;
+      height: 80px;
+      text-align: center;
+      font-size: 18px;
+      line-height: 80px;
+      background-color: white;
+      margin: 50px auto;
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+
+  .container {
+    width: 90%;  
+    height: 100vh;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .manage-box {
+    width: 100%;
+    position: relative;
+    img {
+      width: 80%;
+      max-width: 500px;
+      display: block;
+      margin: 0% auto 0;
+      padding-top: 10%;
+    }
+    .mana-balloon {
+      width: 90%;
+      height: 150px;
+      bottom: 0px;
+      padding: 30px 10px;
+      .mana-text {
+        color: white;
+        font-size: 18px;
+        line-height: 1.6rem;
+      }
+      &:before {
+        border-style: solid;
+        border-width: 0 10px 30px 70px;
+        border-color: transparent transparent rgba(0, 0, 0, 0.534) transparent;
+        content: "";
+        position: absolute;
+        top: -30px; left: 10%;
+        margin-left: -9px;
+        display: block;
+        width: 0px;
+        height: 0px;
+        z-index: 0;
+      }
+    }
+  }
+
+  .nav-box {
+    width: 100%;
+    .main-btns {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+      div {
+        width: 70%;
+        height: 80px;
+        font-size: 18px;
+        line-height: 80px;
+        margin: 30px auto;
+        cursor: pointer;
+      }
+    }
+  }
+}
+@media screen and (max-width: 560px) {
+  .logo {
+    width: 80px;
+    height: 60px;
+    line-height: 60px;
+  }
+  .menu {
+    top: 10px;
+    right: 10px;
+  }
+  .sp-header {
+    width: 70%;
+    .sp-header-nav {
+      position: relative;
+      padding-top: 120px;
+      li {
+        width: 100%;
+        margin: 15px 0;
+        a {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  .container {
+    width: 90%;
+    height: 100vh;
+    display: block;
+    margin: 0 auto;
+  }
+  .manage-box {
+    width: 100%;
+    position: relative;
+    img {
+      width: 80%;
+      max-width: 500px;
+      display: block;
+      margin: 0% auto 0;
+      padding-top: 30%;
+    }
+    .mana-balloon {
+      width: 90%;
+      height: 100px;
+      bottom: -20px;
+      padding: 20px 10px;
+      .mana-text {
+        font-size: 13px;
+        line-height: 1.6rem;
+      }
+      &:before {
+        border-width: 0 6px 15px 50px;
+        top: -15px; left: 10%;
+      }
+    }
+  }
+
+  .nav-box {
+    width: 100%;
+    .main-btns {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+      div {
+        width: 70%;
+        height: 60px;
+        font-size: 16px;
+        line-height: 60px;
+        margin: 30px auto;
+        cursor: pointer;
+      }
+    }
+  }
+}
