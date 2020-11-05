@@ -39,6 +39,9 @@ $(function () {
         // 登録処理
         delete_DB(StartTime);
         // タイマー表示
+        if (typeof Timer !== 'undefined') {
+            clearInterval(Timer);
+        };
         DisplayTimer(timing);
         // ボタン変更
         $("#timer-stop").hide();
@@ -119,6 +122,9 @@ $(function () {
         // 時間取得
         StartTime = $(this).parent().find("div").text();
         // タイマー表示
+        if (typeof Timer !== 'undefined') {
+            clearInterval(Timer);
+        };
         IntervalTimer(StartTime);
         // ボタン変更
         $("#timer-start").hide();
@@ -178,7 +184,7 @@ $(function () {
     /////////// その他の関数 ///////////
     // タイマー表示関数(43msごとに処理してます。43はテキトーに素数当てはめてます)
     function IntervalTimer(StartTime) {
-        const Timer = setInterval(function () {
+        Timer = setInterval(function () {
             // 経過時間取得
             var Process = new Date();
             var ElapsedTime = Process.getTime() - StartTime;
@@ -187,8 +193,7 @@ $(function () {
         }, 43);
 
         // ストップ処理
-        $("#timer-stop").click(() => clearInterval(Timer));
-        $(document).on("click", ".timer-sync", () => clearInterval(Timer));
+        //$("#timer-stop").click(() => clearInterval(Timer));
     }
 
     // タイマーのディスプレイ表示
