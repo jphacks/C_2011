@@ -234,6 +234,24 @@ html, body {
   height: 100%;
   padding: 10px 40px;
   font-size: 16px;
+  position: relative;
+}
+
+.sp-header .sp-header-nav li a::after {
+  position: absolute;
+  bottom: -4px;
+  left: 30px;
+  content: '';
+  width: 80%;
+  height: 2px;
+  background: #d33d3d;
+  transform: scale(0, 1);
+  transform-origin: left top;
+  transition: transform .3s;
+}
+
+.sp-header .sp-header-nav li a:hover::after {
+  transform: scale(1, 1);
 }
 
 .sp-header .setting-spnav {
@@ -335,9 +353,19 @@ html, body {
   text-align: center;
   font-size: 18px;
   line-height: 80px;
-  background-color: white;
   margin: 50px auto;
   cursor: pointer;
+  background-color: white;
+  color: #d33d3d;
+  border: double 7px #d33d3d;
+  border-radius: 10px;
+  transition: all .3s;
+}
+
+.nav-box .main-btns div:hover {
+  background-color: #d33d3d;
+  color: white;
+  border: double 7px white;
 }
 
 @media screen and (max-width: 960px) {
