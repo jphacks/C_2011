@@ -38,7 +38,7 @@ $(function () {
     function TimerStopFunction(timing) {
         // 登録処理
         delete_DB();
-        push_DB(state = "stop", time = StartTime);
+        //push_DB(state = "stop", time = StartTime);
         // タイマー表示
         DisplayTimer(timing);
         // ボタン変更
@@ -58,10 +58,11 @@ $(function () {
     /////////// スプリット処理　///////////
     function TimerSplitFunction(SplitTime) {
         // スプリットタイム
-        var SplitTime_ = String(Math.floor(SplitTime / 10000000) % 10) + ":"
-            + String(ZeroPadding(Math.floor(SplitTime / 100000) % 100)) + ":"
-            + String(ZeroPadding(Math.floor(SplitTime / 1000) % 100)) + "."
-            + String(ZeroPadding(Math.floor(SplitTime / 10) % 100));
+        var temp = getElapsedTime(SplitTime)
+        var SplitTime_ = String(temp.hour) + ":"
+            + String(ZeroPadding(temp.minute)) + ":"
+            + String(ZeroPadding(temp.second)) + "."
+            + String(ZeroPadding(temp.millisecond));
         // ログに追加
         $("#timer-log").append("<div class='SplitTime'>" + SplitTime_ + "</div>");
     };
@@ -123,6 +124,8 @@ $(function () {
         IntervalTimer(StartTime);
         // ボタン変更
         $("#timer-start").hide();
+        $("#timer-reset").hide();
+        $("#timer-restart").hide();
         $("#timer-stop").show();
         $("#timer-split").show();
     });
@@ -139,8 +142,13 @@ $(function () {
 
     // データベースの削除
     const delete_DB = () => {
-        const id = $("#StartTime-log").find("div").attr("id");
+        const id = $("#StartTime-log").find("div:contains(" + StartTime + ")").attr("id");
         firebase.database().ref('timer_management/' + id).remove();
+        /*
+        DB_id = ref.orderByChild("start").startAt(StartTime).endAt(StartTime)
+                .once('value', (snapshot) => console.log(snapshot.val()));
+        console.log(DB_id)
+        */
     };
 
     // TODOを表示する
@@ -177,16 +185,30 @@ $(function () {
             // ディスプレイ表示
             DisplayTimer(ElapsedTime);
             // ストップ処理
-            $("#timer-stop").click(() => clearInterval(Timer))
+            $("#timer-stop").click(() => clearInterval(Timer));
+            $(document).on("click", ".timer-sync", () => clearInterval(Timer));
         }, 43);
     }
 
     // タイマーのディスプレイ表示
     function DisplayTimer(ElapsedTime) {
-        $(".milliseconds").text(ZeroPadding(Math.floor(ElapsedTime / 10) % 100));
-        $(".seconds").text(ZeroPadding(Math.floor(ElapsedTime / 1000) % 100));
-        $(".minutes").text(ZeroPadding(Math.floor(ElapsedTime / 100000) % 100));
-        $(".hours").text(Math.floor(ElapsedTime / 10000000) % 10);
+        var temp = getElapsedTime(ElapsedTime);
+        $(".milliseconds").text(ZeroPadding(temp.millisecond));
+        $(".seconds").text(ZeroPadding(temp.second));
+        $(".minutes").text(ZeroPadding(temp.minute));
+        $(".hours").text(temp.hour);
+    }
+
+    // msから時間に変更
+    function getElapsedTime(ElapsedTime) {
+        var TimeConstructor = new Date(ElapsedTime);
+        var TimeObject = {
+            hour : TimeConstructor.getHours() - 9,
+            minute : TimeConstructor.getMinutes(),
+            second : TimeConstructor.getSeconds(),
+            millisecond : TimeConstructor.getMilliseconds()
+        }
+        return TimeObject
     }
 
     // ゼロで桁埋めする関数
