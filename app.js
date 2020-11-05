@@ -5,7 +5,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
 
 app.set("views","functions/views");
-app.get('/', (req, res) => {
+app.get('/tools', (req, res) => {
     res.render('index.ejs');
 });
 
@@ -36,5 +36,6 @@ app.get('/fireTest', (req, res) => {
 // サーバーを起動するコードを貼り付けてください
 const port = 3000;
 app.listen(port,()=>{
-    console.log("Open->http://localhost:"+port);
+    console.log("Open index.html->http://localhost:"+port);
+    console.log("Open tools->http://localhost:"+port+"/tools");
 });
