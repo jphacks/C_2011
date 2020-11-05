@@ -18,7 +18,7 @@ $(function () {
     /////////// スタート処理 ///////////
     function TimerStartFunction(timing) {
         // 登録処理
-        push_DB(state = "start", time = timing);
+        push_DB(timing);
         // タイマー表示
         IntervalTimer(timing)
         // ボタン変更
@@ -37,7 +37,7 @@ $(function () {
     /////////// ストップ処理 ///////////
     function TimerStopFunction(timing) {
         // 登録処理
-        delete_DB(StartTime);
+        delete_DB();
         // タイマー表示
         if (typeof Timer !== 'undefined') {
             clearInterval(Timer);
@@ -79,7 +79,7 @@ $(function () {
     /////////// リスタート処理　///////////
     function TimerRestartFunction(timing) {
         // 登録処理
-        push_DB(state = "start", time = timing);
+        push_DB(timing);
         // タイマー表示
         IntervalTimer(timing);
         // ボタン変更
@@ -103,7 +103,7 @@ $(function () {
         // ログの消去
         $("#timer-log").html("");
         // データベースから削除
-        delete_DB(StartTime);
+        delete_DB();
         // ボタン変更
         $("#timer-reset").hide();
         $("#timer-restart").hide();
@@ -120,7 +120,8 @@ $(function () {
     // 同期ボタンを押した時の処理
     $(document).on("click", ".timer-sync", function () {
         // 時間取得
-        StartTime = $(this).parent().find("div").text();
+        StartTime = $(this).parent().find(".starttime_temp").text();//////////////変更予定
+        DB_id = $(this).parent().attr("id");//////////////////////////変更予定
         // タイマー表示
         if (typeof Timer !== 'undefined') {
             clearInterval(Timer);
@@ -137,33 +138,36 @@ $(function () {
     // 同期消去ボタンを押した時の処理
     $(document).on("click", ".sync-reset", function () {
         var ResetTime = $(this).text();
-        delete_DB(ResetTime)
+        delete_DB()
     });
 
 
     /////////// データベース関連の関数 ///////////
     // データベース登録
-    const push_DB = (state, time) => {
+    const push_DB = (time) => {
+        name_ = $("#UserName-box").val();
         ref.push({
-            state: state,
-            start: time
+            start: time,
+            UserName : name_
         });
     };
 
     // データベースの削除
-    const delete_DB = (timing) => {
-        var DB_id = $("#StartTime-log").find("div:contains(" + timing + ")").attr("id");
+    const delete_DB = () => {
         firebase.database().ref('timer_management/' + DB_id).remove();
     };
 
     // TODOを表示する
     const dispTodo = (time) => {
-        if (time.value.state == "start") {
-            const todo_html = time.value.start;
-            $("#StartTime-log").append(`
-                <div id="${time.id}"><div>${todo_html}</div><button class="timer-sync">同期</button><button class="sync-reset">消去</button></div>
-            `);
-        }
+        DB_id = time.id
+        $("#StartTime-log").append(
+            `<div id="${time.id}">
+                <div class="starttime_temp">${time.value.start}</div>
+                <div>${time.value.UserName}</div>
+                <button class="timer-sync">同期</button>
+                <button class="sync-reset">消去</button>
+            </div>`
+        );
     }
 
     // データベースが追加された時の処理
@@ -172,7 +176,7 @@ $(function () {
             id: item.key,
             value: item.val()
         });
-        //firebase.database().ref('timer_management/' + item.key).once("value", (aaa) => console.log(aaa.val()))
+        //firebase.database().ref('timer_management/' + item.key).once("value", (aaa) => console.log(aaa.val().start))
     });
 
     // データベースが削除された時の処理
@@ -191,9 +195,6 @@ $(function () {
             // ディスプレイ表示
             DisplayTimer(ElapsedTime);
         }, 43);
-
-        // ストップ処理
-        //$("#timer-stop").click(() => clearInterval(Timer));
     }
 
     // タイマーのディスプレイ表示
