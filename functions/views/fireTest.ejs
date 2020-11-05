@@ -33,27 +33,20 @@
 </head>
 
 <body>
-    <h1>hello world!</h1>
+    <!--<img class="logo" src="image/hoge.png" title="ロゴ">  ロゴ？-->
     <h1><a href="/">Back to Index</a></h1>
     <div>
         <div>
-            <input type="text" id="title" placeholder="タイトル（必須）">
+            <input type="text" id="title" placeholder="title（任意）">
         </div>
         <div>
-            <textarea id="content" placeholder="内容（任意）"></textarea>
+            <textarea id="content" placeholder="message（必須）"></textarea>
         </div>
         <div>
-            <input type="text" id="end_date" placeholder="タスクの期限を設定">
+            <input type="text" id="person" placeholder="name">
         </div>
         <div>
-            <select id="person">
-                <option value="未指定">担当者を選んでください</option>
-                <option value="おれ">おれ</option>
-                <option value="あいつ">あいつ</option>
-            </select>
-        </div>
-        <div>
-            <button id="post">登録する</button>
+            <button id="post">投稿する</button>
         </div>
     </div>
     <div id="todo_list"></div>
@@ -62,22 +55,19 @@
         const postAction = () => {
             const title = $("#title").val();
             const content = $("#content").val();
-            const end_date = $("#end_date").val();
             const person = $("#person").val();
-            if (title && title !== "") {
+            if (content && content !== "") {
                 ref.push({
                     title: title,
                     content: content,
                     person: person,
-                    end_date: end_date,
                     date: new Date().getTime()
                 });
             }
             // とりあえず登録終わったら空にしとく
             $("#title").val("");
             $("#content").val("");
-            $("#end_date").val("");
-            $("#person").val("未指定");
+            $("#person").val("");
         };
 
         // 登録時のアクション
@@ -91,14 +81,11 @@
         });
         // TODOを表示する
         const dispTodo = (todo) => {
-            let end_date = "";
-            // 期日があれば「xxまでに」という文字列を作る
-            if (todo.value.end_date) {
-                end_date = todo.value.end_date + "までに";
-            }
+            let person="名無しのランナー";
+            if(todo.value.person!==""){person=todo.value.person}
             // TODO内容をリストの一番上に挿入
-            const todo_html = todo.value.title + "<br />" + todo.value.content + "<br />" + todo.value.person + "が" + end_date + "やる";
-            $("#todo_list").prepend(`<div id="${todo.id}">${todo_html}<button class="done">DONE</button></div>`);
+            const todo_html = todo.value.title + "<br />" + todo.value.content + "<br />" + person + "<br />";
+            $("#todo_list").prepend(`<div id="${todo.id}">${todo_html}<button class="done">投稿削除</button></div>`);
         }
         // 削除処理
         $(document).on('click', '.done', (event) => {
