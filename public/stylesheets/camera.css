@@ -28,6 +28,13 @@
     background-repeat: no-repeat; 
 }
 
+a.btn--orange{
+    position: absolute;
+    left:20px;
+    top:0px;
+    color: #fff;
+    background-color: #eb6100;
+}
 
 .video-options {
     position: absolute;
