@@ -36,13 +36,13 @@
     <!--<img class="logo" src="image/hoge.png" title="ロゴ">  ロゴ？-->
     <h1><a href="/">Back to Index</a></h1>
     <div>
-        <div>
+        <div class="input-title">
             <input type="text" id="title" placeholder="title（任意）">
         </div>
-        <div>
+        <div class="input-content">
             <textarea id="content" placeholder="message（必須）"></textarea>
         </div>
-        <div>
+        <div class="input-person">
             <input type="text" id="person" placeholder="name">
         </div>
         <div>
@@ -56,6 +56,7 @@
             const title = $("#title").val();
             const content = $("#content").val();
             const person = $("#person").val();
+            const file=$("#file").val();
             if (content && content !== "") {
                 ref.push({
                     title: title,
@@ -84,8 +85,8 @@
             let person="名無しのランナー";
             if(todo.value.person!==""){person=todo.value.person}
             // TODO内容をリストの一番上に挿入
-            const todo_html = todo.value.title + "<br />" + todo.value.content + "<br />" + person + "<br />";
-            $("#todo_list").prepend(`<div id="${todo.id}">${todo_html}<button class="done">投稿削除</button></div>`);
+            const todo_html = '<p class="title">'+todo.value.title +'</p><p class="content">'+ todo.value.content + '<p class="person">' + person + "</p>";
+            $("#todo_list").prepend(`<div class="chat" id="${todo.id}">${todo_html}<button class="done">投稿削除</button></div>`);
         }
         // 削除処理
         $(document).on('click', '.done', (event) => {
