@@ -13,7 +13,7 @@ const app = express();
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
 
-app.get('/', (req, res) => {
+app.get('/tools', (req, res) => {
     res.render('index.ejs');
 });
 
@@ -30,13 +30,8 @@ app.get('/sns_list', (req, res) => {
 });
 
 app.get('/timer', (req, res) => {
-    res.render('timer.ejs', {start : ""});
+    res.render('timer.ejs');
 });
-
-app.post('/timer', (req, res) => {
-    res.render('timer.ejs', { start : req.body.startTime })
-    console.log(req.body.startTime);
-})
 
 app.get('/camera', (req, res) => {
     res.render('camera.ejs');
