@@ -169,9 +169,9 @@ const delete_DB = () => {
 const htmlInsert = (time) => {
     DB_id = time.id
     $("#DB-log").append(
-        `<div id="${time.id}">
-                <div>${time.value.UserName}</div>
-                <div>${time.value.date}</div>
+        `<div id="${time.id}" class="DB-log-one">
+                <div>User &thinsp; : &thinsp; ${time.value.UserName}</div>
+                <div>Date &thinsp; : &thinsp; ${time.value.date}</div>
                 <button class="timer-sync">同期</button>
                 <button class="sync-reset">消去</button>
             </div>`
