@@ -9,10 +9,6 @@ app.get('/tools', (req, res) => {
     res.render('index.ejs');
 });
 
-app.get('/rec_list', (req, res) => {
-    res.render('rec_list.ejs');
-});
-
 app.get('/sns_list', (req, res) => {
     res.render('sns_list.ejs');
 });
@@ -23,10 +19,6 @@ app.get('/timer', (req, res) => {
 
 app.get('/camera', (req, res) => {
     res.render('camera.ejs');
-});
-
-app.get('/goal_list', (req, res) => {
-    res.render('goal_list.ejs');
 });
 
 app.get('/fireTest', (req, res) => {
