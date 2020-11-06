@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scal=1">
@@ -10,9 +11,34 @@
   <script src="https://kit.fontawesome.com/cbd8ebf0e0.js" crossorigin="anonymous"></script>
   <!-- jQuery読み込み -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDyvg2XGshl7PjbuRegWiIF2TelusS_jWg",
+      authDomain: "c2011-webapp.firebaseapp.com",
+      databaseURL: "https://c2011-webapp.firebaseio.com",
+      projectId: "c2011-webapp",
+      storageBucket: "c2011-webapp.appspot.com",
+      messagingSenderId: "1006358141829",
+      appId: "1:1006358141829:web:3a597f1a2990b68d1d82ec"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    const ref = database.ref('todo');
+  </script>
 </head>
+
 <body>
-<div class="wrap">
+
   <div class="logo">仮ロゴ</div>
   <div class="setting sp-none"><i class="fas fa-cog fa-2x"></i></div>
   <div class="mypage sp-none"></div>
@@ -20,21 +46,87 @@
   <div class="sp-header">
     <ul class="sp-header-nav">
       <li><a href="/">HOME</a></li>
-      <li><a href="">タイム計測</a></li>
+      <li><a href="/timer">タイム計測</a></li>
       <li><a href="">練習メニュー管理（準備中）</a></li>
-      <li><a href="">タイムライン（準備中）</a></li>
+      <li><a href="/timeLine.html">タイムライン（準備中）</a></li>
       <li><a href="">マイページ（準備中）</a></li>
     </ul>
     <div class="setting-spnav"><i class="fas fa-cog fa-2x"></i></div>
     <div class="mypage-spnav"></div>
   </div>
-  <div class="container"></div>
+  <div class="input-chat">
+    <div class="input-title">
+      <input type="text" id="title" placeholder="title（任意）">
+    </div>
+    <div class="input-content">
+      <textarea id="content" placeholder="message（必須）"></textarea>
+    </div>
+    <div class="input-person">
+      <input type="text" id="person" placeholder="name">
+    </div>
+    <div>
+      <button id="post">投稿する</button>
+    </div>
+  </div>
+  <div id="todo_list"></div>
 
+  <!-- html->bodyの内容はここまで --------------------->
+
+  <!-- ここからスクリプト -->
+  <script>
+    // 登録処理
+    const postAction = () => {
+      const title = $("#title").val();
+      const content = $("#content").val();
+      const person = $("#person").val();
+      const file = $("#file").val();
+      if (content && content !== "") {
+        ref.push({
+          title: title,
+          content: content,
+          person: person,
+          date: new Date().getTime()
+        });
+      }
+      // とりあえず登録終わったら空にしとく
+      $("#title").val("");
+      $("#content").val("");
+      $("#person").val("");
+    };
+
+    // 登録時のアクション
+    $('#post').click(() => postAction());
+    // // 初期表示と登録後のコールバック
+    ref.on("child_added", (snapshot) => {
+      dispTodo({
+        id: snapshot.key,
+        value: snapshot.val()
+      });
+    });
+    // TODOを表示する
+    const dispTodo = (todo) => {
+      let person = "名無しのランナー";
+      if (todo.value.person !== "") { person = todo.value.person }
+      // TODO内容をリストの一番上に挿入
+      const todo_html = '<p class="title">' + todo.value.title + '</p><p class="content">' + todo.value.content + '<p class="person">' + person + "</p>";
+      $("#todo_list").prepend(`<div class="chat" id="${todo.id}">${todo_html}<button class="done">投稿削除</button></div>`);
+    }
+    // 削除処理
+    $(document).on('click', '.done', (event) => {
+      const id = $(event.target).closest('div').attr('id');
+      firebase.database().ref('todo/' + id).remove();
+    });
+    // 削除
+    ref.on("child_removed", (snapshot) => {
+      $("#" + snapshot.key).remove();
+    });
+  </script>
 
 
   <div class="copy">2020 NitechT&F@JPHACKS2020 All Right Reserver</div>
 
-</div>
-<script type="text/javascript" src="javascripts/common.js"></script>
+
+  <script type="text/javascript" src="javascripts/common.js"></script>
 </body>
+
 </html>
