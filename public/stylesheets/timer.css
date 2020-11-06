@@ -7,7 +7,7 @@ body {
 /*=== header ================================================*/
 #timer-title {
     position: absolute;
-    top: 33px;
+    top: 30px;
     left: 170px;
     font-size: 40px;
 }
@@ -46,7 +46,6 @@ body {
     margin-top: 10px;
     width: 95%;
     font-size: 20px;
-    /*width: 300px;*/
 }
 
 #timer-btn-wrap {
@@ -71,6 +70,7 @@ body {
 #video-wrap {
     width: 35%;
 }
+
 .title_ {
     padding-bottom: 10px;
     padding-left: 10px;
@@ -111,8 +111,13 @@ body {
 
 
 /*=== timer-log ================================================*/
+.timer-log_DB-log_wrap {
+    display: flex;
+    width: 60%;
+}
+
 #timer-log-wrap {
-    width: 20%;
+    width: 36%;
     margin-left: 30px;
 }
 
@@ -130,13 +135,110 @@ body {
 
 /*=== DB-log ================================================*/
 #DB-log-wrap {
-    width: 35%;
+    width: 63%;
     margin-left: 30px;
 }
 
+.DB-log-one {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
 
-@media screen and (max-width: 560px) {
+
+/*=== レスポンシブ化 =======================================================================*/
+@media screen and (max-width: 960px) {
+    /*=== header ================================================*/
+    .logo {
+        position: absolute;
+    }
+
+    .menu {
+        position: absolute;
+    }
+
+    /*=== timer ================================================*/
+    .timer-wrap {
+        display: flex;
+        flex-direction: column;
+    }
+
     #timer {
-        margin-top: 80px;
+        width: 96%;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+    
+
+    /*=== UserNameBox ================================================*/
+    .UserName-wrap {
+        width: 50%;
+        margin-bottom: 30px;
+        margin-left: 2%;
+    }
+
+
+    /*=== video ================================================*/
+    .video_timer-log_DB-log_wrap {
+        width: 96%;
+        margin-left: 2%;
+        margin-right: 2%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #video-wrap {
+        width: 100%;
+    }
+
+    
+    /*=== timer-log ================================================*/
+    .timer-log_DB-log_wrap {
+        display: flex;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    #timer-log-wrap {
+        margin-left: 0px;
+    }
+
+}
+
+
+/*=== レスポンシブ化 =======================================================================*/
+@media screen and (max-width: 560px) {
+    /*=== header ================================================*/
+    #timer-title {
+        top: 30px;
+        left: 100px;
+        font-size: 25px;
+    }
+    
+    /*=== timer ================================================*/
+    #timer-body {
+        line-height: 100px;
+        font-size: 35px;
+    }
+
+    /*=== timer-log ================================================*/
+    .timer-log_DB-log_wrap {
+        display: flex;
+        flex-direction: column;
+        width: 96%;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    #timer-log-wrap {
+        width: 100%;
+        margin-left: 0px;
+        margin-bottom: 30px;
+    }
+    
+    /*=== DB-log ================================================*/
+    #DB-log-wrap {
+        width: 100%;
+        margin-left: 0px;
     }
 }

@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <title>ManagerAssistant OnlineTimer</title>
-    <script src="/send_url.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="javascripts/timer.js" defer></script>
     <script src="javascripts/common.js" defer></script>
@@ -103,14 +102,17 @@
             <div id="video">映像部分</div>
         </div>
 
-        <div id="timer-log-wrap">
-            <div id="timer-log-title" class="title_">スプリットタイム</div>
-            <div id="timer-log"></div>
+        <div class="timer-log_DB-log_wrap">
+            <div id="timer-log-wrap">
+                <div id="timer-log-title" class="title_">スプリットタイム</div>
+                <div id="timer-log"></div>
+            </div>
+            <div id="DB-log-wrap">
+                <div id="DB-log-title" class="title_">同期</div>
+                <div id="DB-log"></div>
+            </div>
         </div>
-        <div id="DB-log-wrap">
-            <div id="DB-log-title" class="title_">同期</div>
-            <div id="DB-log"></div>
-        </div>
+        
     </div>
 
     <div class="sp-header">
