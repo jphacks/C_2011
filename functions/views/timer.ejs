@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>ManagerAssistant OnlineTimer</title>
-        <script src="/send_url.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="javascripts/timer.js" defer></script>
 
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>  
-    
-    </head>
+<head>
+    <meta charset="utf-8">
+    <title>ManagerAssistant OnlineTimer</title>
+    <script src="/send_url.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="javascripts/timer.js" defer></script>
+    <script src="javascripts/common.js" defer></script>
+    <meta name="viewport" content="width=device-width,initial-scal=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/timer.css">
 
-    <body>
-        <header>
-            <a href="/">Manager Assistant</a>
-        </header>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
 
+</head>
+
+<body>
+    <header>
+        <a href="/" class="logo">仮ロゴ</a>
+        <div class="setting sp-none"><i class="fas fa-cog fa-2x"></i></div>
+        <div class="mypage sp-none"></div>
+        <div class="menu pc-none"><span></span></div>
+    </header>
+
+
+    <div class="timer-wrap">
         <div id="timer">
             <div id="timer-title">
-                <div>オンラインタイマー</div>
+                <div>タイム計測</div>
             </div>
 
             <div id="timer-body">
@@ -34,33 +44,57 @@
                 <span class="milliseconds">00</span>
             </div>
 
-            <button class="timer-btn" id="timer-start">スタート</button>
-            <button class="timer-btn" id="timer-stop">ストップ</button>
-            <button class="timer-btn" id="timer-split">スプリット</button>
-            <button class="timer-btn" id="timer-restart">リスタート</button>
-            <button class="timer-btn" id="timer-reset">リセット</button>
+            <div id="timer-btn-wrap">
+                <button class="timer-btn" id="timer-start">スタート</button>
+                <button class="timer-btn" id="timer-stop">ストップ</button>
+                <button class="timer-btn" id="timer-split">スプリット</button>
+                <button class="timer-btn" id="timer-restart">リスタート</button>
+                <button class="timer-btn" id="timer-reset">リセット</button>
+            </div>
             <style>
                 #timer-stop {
-                    display : none ;
+                    display: none;
                 }
+
                 #timer-restart {
-                    display : none ;
+                    display: none;
                 }
+
                 #timer-split {
-                    display : none ;
+                    display: none;
                 }
+
                 #timer-reset {
-                    display : none ;
+                    display: none;
                 }
             </style>
-    
         </div>
-        <div>
+
+        <div class="UserName-wrap">
             <div>ユーザーネーム</div>
             <input id="UserName-box" type="text">
         </div>
-        <div id="timer-log"></div>
-        <div id="DB-log"></div>
 
-    </body>
+    </div>
+
+    <div id="timer-log"></div>
+    <div id="DB-log"></div>
+
+
+
+    <div class="sp-header">
+        <ul class="sp-header-nav">
+            <li><a href="/">HOME</a></li>
+            <li><a href="">タイム計測</a></li>
+            <li><a href="">練習メニュー管理（準備中）</a></li>
+            <li><a href="">タイムライン（準備中）</a></li>
+            <li><a href="">マイページ（準備中）</a></li>
+        </ul>
+        <div class="setting-spnav"><i class="fas fa-cog fa-2x"></i></div>
+        <div class="mypage-spnav"></div>
+    </div>
+
+
+</body>
+
 </html>
