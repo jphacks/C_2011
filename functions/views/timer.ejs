@@ -7,7 +7,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="javascripts/timer.js" defer></script>
     <script src="javascripts/common.js" defer></script>
-    <meta name="viewport" content="width=device-width,initial-scal=1">
+    <!-- Load TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+    <!-- Load BodyPix -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix/dist/body-pix.min.js"></script>
+    <!-- Load personDetector.js-->
+    <script src="javascripts/personDetector.js" defer></script>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/timer.css">
 
@@ -99,7 +106,7 @@
                     <button id="stop_predict">検出停止</button>
                 </div>
             </div>
-            <div id="video">映像部分</div>
+            <video id="video_display" width="300">映像部分</video>
         </div>
 
         <div class="timer-log_DB-log_wrap">
@@ -112,7 +119,7 @@
                 <div id="DB-log"></div>
             </div>
         </div>
-        
+
     </div>
 
     <div class="sp-header">

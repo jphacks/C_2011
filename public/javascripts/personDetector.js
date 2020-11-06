@@ -49,6 +49,7 @@ function startWebcam() {
             stream.getTracks().forEach(track => track.stop())
         });
     }).catch(function (error) {
+        console.log(error);
         alert("Something wrong with webcam!");
     });
 }
@@ -90,10 +91,12 @@ async function predict() {
 // 0.1secごとにpredictを呼び出す
 var interval;
 $("#start_predict").click(() => {
+    $("#start_predict").text("検出中");
     clearInterval(interval);
     interval = setInterval(predict, 1000 / 10);
 });
 $("#stop_predict").click(() => {
+    $("#start_predict").text("検出開始");
     clearInterval(interval);
     interval = setTimeout(() => {
         if ($("#predict_display").length > 0) {
@@ -146,6 +149,12 @@ function detect() {
                 && personCounter_list[2].count > 0
                 && personCounter_list[3].count > 0)) {
             if (detection_stat.indexOf(leaveStr) >= 0) {
+                if (typeof TimerSplitFunction !== "undefined"
+                    && timer_state.indexOf("start")>=0
+                    && $("input[name=use-video]:checked").val() === "goal") {
+                    var SplitTime = (personCounter_list[1].time + personCounter_list[2].time) / 2 - StartTime;
+                    TimerSplitFunction(SplitTime);
+                }
                 detection_stat = comingStr;
                 console.log(comingStr);
             }
@@ -159,6 +168,13 @@ function detect() {
                 && personCounter_list[2].count == 0
                 && personCounter_list[3].count == 0)) {
             if (detection_stat.indexOf(comingStr) >= 0) {
+                if (typeof TimerStartFunction !== "undefined"
+                    && timer_state.indexOf("stop")>=0
+                    && $("input[name=use-video]:checked").val() === "start") {
+                    var timing = (personCounter_list[1].time + personCounter_list[2].time) / 2;
+                    StartTime = timing;
+                    TimerStartFunction(timing);
+                }
                 detection_stat = leaveStr;
                 console.log(leaveStr);
             }

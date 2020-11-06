@@ -12,6 +12,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const ref = database.ref('timer_management');
+var timer_state = "stop";
 
 
 /////////// スタート処理 ///////////
@@ -24,6 +25,7 @@ function TimerStartFunction(timing) {
     $("#timer-start").hide();
     $("#timer-stop").show();
     $("#timer-split").show();
+    timer_state = "start";
 };
 
 // スタートボタンを押した時の処理
@@ -47,6 +49,7 @@ function TimerStopFunction(timing) {
     $("#timer-split").hide();
     $("#timer-restart").show();
     $("#timer-reset").show();
+    timer_state = "paused";
 };
 
 // ストップボタンを押した時の処理
@@ -86,6 +89,7 @@ function TimerRestartFunction(timing) {
     $("#timer-reset").hide();
     $("#timer-split").show();
     $("#timer-stop").show();
+    timer_state = "start";
 };
 
 // リスタートボタンを押した時の処理
@@ -105,6 +109,7 @@ function TimerResetFunction() {
     $("#timer-reset").hide();
     $("#timer-restart").hide();
     $("#timer-start").show();
+    timer_state = "stop";
 }
 
 // リセットボタンを押した時の処理
@@ -124,12 +129,15 @@ $(document).on("click", ".timer-sync", function () {
         clearInterval(Timer);
     };
     IntervalTimer(StartTime);
+    // ログ消去
+    $("#timer-log").text("")
     // ボタン変更
     $("#timer-start").hide();
     $("#timer-reset").hide();
     $("#timer-restart").hide();
     $("#timer-stop").show();
     $("#timer-split").show();
+    timer_state = "start";
 });
 
 // 同期消去ボタンを押した時の処理
