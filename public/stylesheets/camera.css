@@ -28,11 +28,18 @@
     background-repeat: no-repeat; 
 }
 
+a.btn--orange{
+    position: absolute;
+    left:20px;
+    top:5px;
+    color: #fff;
+    background-color: #eb6100;
+}
 
 .video-options {
     position: absolute;
     left: 20px;
-    top:30px;
+    top:50px;
 }
 
 .controls {
