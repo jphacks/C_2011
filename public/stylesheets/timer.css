@@ -12,6 +12,15 @@ body {
     font-size: 40px;
 }
 
+.logo {
+    position: absolute;
+}
+
+.sp-none {
+    position: absolute;
+}
+
+
 /*=== timer ================================================*/
 .timer-wrap {
     display: flex;
@@ -149,10 +158,6 @@ body {
 /*=== レスポンシブ化 =======================================================================*/
 @media screen and (max-width: 960px) {
     /*=== header ================================================*/
-    .logo {
-        position: absolute;
-    }
-
     .menu {
         position: absolute;
     }
