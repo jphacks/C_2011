@@ -19,7 +19,7 @@ function TimerStartFunction(timing) {
     // 登録処理
     push_DB(timing);
     // タイマー表示
-    IntervalTimer(timing)
+    IntervalTimer(timing);
     // ボタン変更
     $("#timer-start").hide();
     $("#timer-stop").show();
@@ -134,7 +134,7 @@ $(document).on("click", ".timer-sync", function () {
 
 // 同期消去ボタンを押した時の処理
 $(document).on("click", ".sync-reset", function () {
-    var ResetTime = $(this).text();
+    DB_id = $(this).parent().attr("id");
     delete_DB()
 });
 
@@ -146,8 +146,16 @@ const push_DB = (time) => {
     if (name_ == "") {
         name_ = "user"
     }
+    var today = new Date()
+    var currentTime = today.getFullYear() + "/" 
+                        + String(today.getMonth() + 1) + "/"
+                        + today.getDate() + " " 
+                        + ZeroPadding(today.getHours()) + ":" 
+                        + ZeroPadding(today.getMinutes()) + ":" 
+                        + ZeroPadding(today.getSeconds());
     ref.push({
         start: time,
+        date: currentTime,
         UserName: name_
     });
 };
@@ -163,6 +171,7 @@ const htmlInsert = (time) => {
     $("#DB-log").append(
         `<div id="${time.id}">
                 <div>${time.value.UserName}</div>
+                <div>${time.value.date}</div>
                 <button class="timer-sync">同期</button>
                 <button class="sync-reset">消去</button>
             </div>`
