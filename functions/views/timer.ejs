@@ -78,16 +78,32 @@
     </div>
 
     <div class="video_timer-log_DB-log_wrap">
-        <div id="video">
+        <div id="video-wrap">
             <div>ビデオ認識</div>
-            <div>
-                <input type="radio" name="use-video" value="start" id="video-start">スタート
-                <input type="radio" name="use-video" value="goal" id="video-goal">ゴール
+            <div id="video-radio">
+                <label>
+                    <input type="radio" name="use-video" value="start" id="video-start">
+                    スタート
+                </label>
+                <label>
+                    <input type="radio" name="use-video" value="goal" id="video-goal">
+                    ゴール
+                </label>
+            </div>
+            <div id="video">映像部分</div>
+            <div id="video-btn">
+                <select id="video-options">
+                    <option value="">カメラ選択</option>
+                </select>
+                <button id="start_webcam">カメラ起動</button>
+                <button id="stop_webcam">カメラ停止</button>
+                <button id="start_predict">検出開始</button>
+                <button id="stop_predict">検出停止</button>    
             </div>
         </div>
 
-        <div id="timer-log"></div>
         <div id="DB-log"></div>
+        <div id="timer-log"></div>
     </div>
 
     <div class="sp-header">
