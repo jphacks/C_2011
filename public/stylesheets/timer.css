@@ -1,13 +1,13 @@
 @charset "UTF-8";
 body {
-    background-color: grey;
+    background-color: rgb(199, 199, 199);
     width: 100%;
     overflow-x: hidden;
 }
 
 #timer-title {
     text-align: center;
-    font-size: 18px;
+    font-size: 30px;
     line-height: 60px;
     cursor: pointer;
     background-color: white;
@@ -18,13 +18,14 @@ body {
 
 .timer-wrap {
     display: flex;
+    width: 100%;
     margin-top: 100px;
     margin-left: 10px;
 }
 
 #timer {
     text-align: center;
-    width: 60%;
+    width: 65%;
 }
 
 #timer-body {
@@ -40,19 +41,54 @@ body {
     margin-top: 90px;
     font-size: 20px;
     margin-left: 25px;
+    width: 30%;
 }
 
 #UserName-box {
     margin-top: 10px;
-    width: 50%;
+    width: 95%;
     font-size: 20px;
-    width: 300px;
+    /*width: 300px;*/
 }
 
-#timer-btn-wrap{
+#timer-btn-wrap {
     margin-top: 10px;
 }
 
+.timer-btn {
+    font-size: 20px;
+    width: 120px;
+}
+
+.video_timer-log_DB-log_wrap {
+    margin-top: 20px;
+    margin-left: 10px ;
+    display: flex;
+    width: 100%;
+}
+
+#video-wrap {
+    width: 40%;
+}
+
+#video {
+    width: 300px;
+    height: 300px;/*===あとで変更===========================*/
+    background-color: blue;/*===あとで変更===========================*/
+}
+
+#video-radio {
+    display: flex;
+    flex-direction: column;
+}
+
+#DB-log {
+    width: 20%;
+}
+
+#timer-log{
+    width: 20%;
+}
 @media screen and (max-width: 560px) {
     #timer {
         margin-top: 80px;
