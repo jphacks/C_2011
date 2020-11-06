@@ -1,41 +1,115 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>ManagerAssistant SNS</title>
-        <script src="/send_url.js"></script>
-    </head>
+<html lang="ja">
 
-    <body>
-        <header>
-            <a href="/">Manager Assistant</a>
-        </header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
 
-        <div id="table">
-            <div id="table-title">
-                <div>アカウント管理</div>
-                <a href="">修正する</a>
-                <% console.log("アカウント情報を修正するとこ決まってない") %>
-            </div>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
 
-            <div id="table-wrapper">
-                <ul class="table-body">
-                    <% item = {id : 1, name : "aaa"} %>
-                    <% console.log("sns_list.ejs データベース決まってない") %>
-                    <li>
-                        <div>
-                            <span>id</span>
-                            <span><%= item.id %></span>
-                        </div>
-                        <div>
-                            <span>name</span>
-                            <span><%= item.name %></span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDyvg2XGshl7PjbuRegWiIF2TelusS_jWg",
+            authDomain: "c2011-webapp.firebaseapp.com",
+            databaseURL: "https://c2011-webapp.firebaseio.com",
+            projectId: "c2011-webapp",
+            storageBucket: "c2011-webapp.appspot.com",
+            messagingSenderId: "1006358141829",
+            appId: "1:1006358141829:web:3a597f1a2990b68d1d82ec"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const ref = database.ref('todo');
+    </script>
+</head>
 
+<body>
+    <h1>hello world!</h1>
+    <h1><a href="/">Back to Index</a></h1>
+    <div>
+        <div>
+            <input type="text" id="title" placeholder="タイトル（必須）">
         </div>
+        <div>
+            <textarea id="content" placeholder="内容（任意）"></textarea>
+        </div>
+        <div>
+            <input type="text" id="end_date" placeholder="タスクの期限を設定">
+        </div>
+        <div>
+            <select id="person">
+                <option value="未指定">担当者を選んでください</option>
+                <option value="おれ">おれ</option>
+                <option value="あいつ">あいつ</option>
+            </select>
+        </div>
+        <div>
+            <button id="post">登録する</button>
+        </div>
+    </div>
+    <div id="todo_list"></div>
+    <script>
+        // 登録処理
+        const postAction = () => {
+            const title = $("#title").val();
+            const content = $("#content").val();
+            const end_date = $("#end_date").val();
+            const person = $("#person").val();
+            if (title && title !== "") {
+                ref.push({
+                    title: title,
+                    content: content,
+                    person: person,
+                    end_date: end_date,
+                    date: new Date().getTime()
+                });
+            }
+            // とりあえず登録終わったら空にしとく
+            $("#title").val("");
+            $("#content").val("");
+            $("#end_date").val("");
+            $("#person").val("未指定");
+        };
 
-    </body>
+        // 登録時のアクション
+        $('#post').click(() => postAction());
+        // // 初期表示と登録後のコールバック
+        ref.on("child_added", (snapshot) => {
+            dispTodo({
+                id: snapshot.key,
+                value: snapshot.val()
+            });
+        });
+        // TODOを表示する
+        const dispTodo = (todo) => {
+            let end_date = "";
+            // 期日があれば「xxまでに」という文字列を作る
+            if (todo.value.end_date) {
+                end_date = todo.value.end_date + "までに";
+            }
+            // TODO内容をリストの一番上に挿入
+            const todo_html = todo.value.title + "<br />" + todo.value.content + "<br />" + todo.value.person + "が" + end_date + "やる";
+            $("#todo_list").prepend(`<div id="${todo.id}">${todo_html}<button class="done">DONE</button></div>`);
+        }
+        // 削除処理
+        $(document).on('click', '.done', (event) => {
+            const id = $(event.target).closest('div').attr('id');
+            firebase.database().ref('todo/' + id).remove();
+        });
+        // 削除
+        ref.on("child_removed", (snapshot) => {
+            $("#" + snapshot.key).remove();
+        });
+    </script>
+</body>
+
 </html>
