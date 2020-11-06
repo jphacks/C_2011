@@ -4,28 +4,25 @@ body {
     width: 100%;
     overflow-x: hidden;
 }
-
+/*=== header ================================================*/
 #timer-title {
-    text-align: center;
-    font-size: 30px;
-    line-height: 60px;
-    cursor: pointer;
-    background-color: white;
-    color: #d33d3d;
-    border: double 7px #d33d3d;
-    border-radius: 10px;
+    position: absolute;
+    top: 33px;
+    left: 170px;
+    font-size: 40px;
 }
 
+/*=== timer ================================================*/
 .timer-wrap {
     display: flex;
     width: 100%;
     margin-top: 100px;
-    margin-left: 10px;
 }
 
 #timer {
     text-align: center;
     width: 65%;
+    margin-left: 10px;
 }
 
 #timer-body {
@@ -37,8 +34,9 @@ body {
     font-size: 50px;
 }
 
+/*=== UserNameBox ================================================*/
 .UserName-wrap {
-    margin-top: 90px;
+    margin-top: 20px;
     font-size: 20px;
     margin-left: 25px;
     width: 30%;
@@ -60,35 +58,83 @@ body {
     width: 120px;
 }
 
+
+/*=== video ================================================*/
 .video_timer-log_DB-log_wrap {
-    margin-top: 20px;
-    margin-left: 10px ;
+    margin-top: 40px;
+    margin-left: 10px;
     display: flex;
     width: 100%;
+    font-size: 20px;
 }
 
 #video-wrap {
-    width: 40%;
+    width: 35%;
+}
+.title_ {
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-width: 2px;
+    border-style : none none solid none;
+    border-color : #ffffff;
+}
+
+#video-radio {
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#video-goal {
+    margin-left: 30px;
+}
+
+#video-options {
+    margin-bottom: 10px;
+    width: 200px;
+}
+
+#video-btn {
+    margin-top: 10px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 #video {
+    margin-top: 10px;
+    margin-left: 10px;
     width: 300px;
     height: 300px;/*===あとで変更===========================*/
     background-color: blue;/*===あとで変更===========================*/
 }
 
-#video-radio {
+
+/*=== timer-log ================================================*/
+#timer-log-wrap {
+    width: 20%;
+    margin-left: 30px;
+}
+
+#timer-log {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    margin-left: 10px;
 }
 
-#DB-log {
-    width: 20%;
+.SplitTime {
+    margin-top: 10px;
 }
 
-#timer-log{
-    width: 20%;
+
+/*=== DB-log ================================================*/
+#DB-log-wrap {
+    width: 35%;
+    margin-left: 30px;
 }
+
+
 @media screen and (max-width: 560px) {
     #timer {
         margin-top: 80px;
