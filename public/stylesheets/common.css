@@ -99,7 +99,7 @@ html, body {
   pointer-events: stroke !important;
 }
 
-.body {
+body {
   position: relative;
 }
 

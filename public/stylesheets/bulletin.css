@@ -99,24 +99,31 @@
   line-height: 28px;
   text-align: center;
   box-sizing: border-box;
+  border-radius: 5px;
+  transition: all .3s;
+  outline: 0;
   background-color: white;
   color: #d33d3d;
-  border: double 7px #d33d3d;
-  border-radius: 10px;
-  transition: all .3s;
+  border: solid 1px #d33d3d;
 }
 
 .input-chat .submit-btn button:hover {
   background-color: #d33d3d;
   color: white;
-  border: double 7px white;
+  border: none;
+}
+
+.input-chat .submit-btn button:focus {
+  outline: 0;
 }
 
 @media screen and (max-width: 560px) {
+  .container {
+    width: 90%;
+  }
   .input-chat {
-    border-bottom: 1px black solid;
     padding: 100px 0px 20px;
-    margin: 0px 0 80px;
+    margin: 0px 0 40px;
   }
   .input-chat .input-title {
     width: 85%;
@@ -159,16 +166,19 @@
     line-height: 28px;
     text-align: center;
     box-sizing: border-box;
+    transition: all .3s;
+    outline: 0;
     background-color: white;
     color: #d33d3d;
-    border: double 7px #d33d3d;
-    border-radius: 10px;
-    transition: all .3s;
+    border: solid 1px #d33d3d;
   }
   .input-chat .submit-btn button:hover {
     background-color: #d33d3d;
     color: white;
-    border: double 7px white;
+    border: none;
+  }
+  .input-chat .submit-btn button:focus {
+    outline: 0;
   }
 }
 
@@ -181,6 +191,9 @@
   width: 80%;
   margin: 50px auto;
   position: relative;
+  border-bottom: solid 1px black;
+  border-radius: 0px;
+  padding-left: 5px;
 }
 
 #todo_list .chat .title {
@@ -225,4 +238,39 @@
 
 #todo_list .chat .done:focus {
   outline: 0;
+}
+
+@media screen and (max-width: 560px) {
+  #todo_list {
+    padding: 0px;
+    padding-right: 15px;
+    margin: 0;
+  }
+  #todo_list .chat {
+    width: 100%;
+    margin: 50px auto;
+  }
+  #todo_list .chat .title {
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+  }
+  #todo_list .chat .content {
+    line-height: 1.6rem;
+    font-size: 13px;
+  }
+  #todo_list .chat .person {
+    margin: 30px 0;
+    position: relative;
+    padding-left: 60px;
+    font-size: 13px;
+  }
+  #todo_list .chat .done {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    width: 80px;
+    height: 30px;
+    line-height: 28px;
+  }
 }

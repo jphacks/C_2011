@@ -87,25 +87,31 @@
       line-height: 28px;
       text-align: center;
       box-sizing: border-box;
-      background-color: white;
-      color: rgb(211, 61, 61);
-      border: double 7px rgb(211, 61, 61);
-      border-radius: 10px;
+      border-radius: 5px;
       transition: all .3s;
+      outline: 0;
+      background-color: white;
+      color:rgb(211, 61, 61);
+      border: solid 1px rgb(211, 61, 61);
       &:hover {
         background-color: rgb(211, 61, 61);
-        color:white;
-        border: double 7px white;
+        color: white;
+        border: none;
+      }
+      &:focus {
+        outline: 0;
       }
     }
   }
 }
 
 @media screen and (max-width: 560px) {
+  .container {
+    width: 90%;
+  }
 .input-chat {
-  border-bottom: 1px black solid;
   padding: 100px 0px 20px;
-  margin: 0px 0 80px;
+  margin: 0px 0 40px;
   .input-title {
     width: 85%;
     margin: 20px 0;
@@ -146,15 +152,18 @@
       line-height: 28px;
       text-align: center;
       box-sizing: border-box;
-      background-color: white;
-      color: rgb(211, 61, 61);
-      border: double 7px rgb(211, 61, 61);
-      border-radius: 10px;
       transition: all .3s;
+      outline: 0;
+      background-color: white;
+      color:rgb(211, 61, 61);
+      border: solid 1px rgb(211, 61, 61);
       &:hover {
         background-color: rgb(211, 61, 61);
-        color:white;
-        border: double 7px white;
+        color: white;
+        border: none;
+      }
+      &:focus {
+        outline: 0;
       }
     }
   }
@@ -168,6 +177,9 @@
     width: 80%;
     margin: 50px auto;
     position: relative;
+    border-bottom: solid 1px black;
+    border-radius: 0px;
+    padding-left: 5px;
     .title {
       height: 50px;
       line-height: 50px;
@@ -175,14 +187,12 @@
       font-weight: bold;
     }
     .content {
-      // height: 30px;
       line-height: 1.6rem;
       font-size: 16px;
     }
     .person {
       margin: 30px 0;
       position: relative;
-      // text-align: right;
       padding-left: 60px;
       &::before {
         content: "from";
@@ -209,4 +219,40 @@
       }
     }
   }
+}
+
+
+@media screen and (max-width: 560px) {
+#todo_list {
+  padding: 0px;
+  padding-right: 15px;
+  margin: 0;
+  .chat {
+    width: 100%;
+    margin: 50px auto;
+    .title {
+      height: 50px;
+      line-height: 50px;
+      font-size: 16px;
+    }
+    .content {
+      line-height: 1.6rem;
+      font-size: 13px;
+    }
+    .person {
+      margin: 30px 0;
+      position: relative;
+      padding-left: 60px;
+      font-size: 13px;
+    }
+    .done {
+      position: absolute;
+      top: 5px;
+      right: 0px;
+      width: 80px;
+      height: 30px;
+      line-height: 28px;
+    }
+  }
+}
 }
