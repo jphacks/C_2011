@@ -16,7 +16,6 @@ function time_dialogue() {
 
 function random_dialogue() {
     var rand_num = Math.random() * 3;
-    console.log(rand_num)
     if (0 <= rand_num && rand_num < 1) {
         return "今日の調子はどう？";
     } else if (1 <= rand_num && rand_num < 2) {
