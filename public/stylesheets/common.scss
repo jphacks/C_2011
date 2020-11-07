@@ -141,6 +141,8 @@ body {
 @media screen and (max-width: 560px) {
   #loading-wrap .img {
     width: 60%;
+    height: 110px;
+    font-size: 40px;
   }
 
 }
@@ -163,29 +165,6 @@ body {
     color: rgb(64, 181, 235);
   }
 }
-
-// .setting {
-//   color: gray;
-//   padding-top: 10px;
-//   position: fixed;
-//   top: 25px;
-//   right: 20px;
-//   cursor: pointer;
-// }
-
-// .mypage {
-//   width: 50px;
-//   height: 50px;
-//   border-radius: 50%;
-//   background-image: url(../image/20201105_075338519_iOS.JPG);
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   background-size: cover;
-//   position: fixed;
-//   top: 25px;
-//   right: 80px;
-//   cursor: pointer;
-// }
 
 .menu {
   width: 70px;
@@ -332,9 +311,21 @@ body {
 
 @media screen and (max-width: 560px) {
   .logo {
-    width: 80px;
-    height: 60px;
-    line-height: 60px;
+    width: 90px;
+    height: 50px;
+    padding-top: 10px;
+    background-color: rgba(0, 0, 0, 0.534);
+    text-align: center;
+    // line-height: 80px;
+    position: fixed;
+    top: 10px;
+    left: 5px;
+    z-index: 10;
+    color: white;
+    font-size: 16px;
+    span {
+      color: rgb(64, 181, 235);
+    }
   }
   .menu {
     top: 10px;
