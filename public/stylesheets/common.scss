@@ -94,6 +94,9 @@ html,body {
   pointer-events: stroke !important;
 }
 
+.body {
+  position: relative;
+}
 
 
 .logo {
@@ -105,30 +108,31 @@ html,body {
   position: fixed;
   top: 10px;
   left: 10px;
+  z-index: 10;
 }
 
-.setting {
-  color: gray;
-  padding-top: 10px;
-  position: fixed;
-  top: 25px;
-  right: 20px;
-  cursor: pointer;
-}
+// .setting {
+//   color: gray;
+//   padding-top: 10px;
+//   position: fixed;
+//   top: 25px;
+//   right: 20px;
+//   cursor: pointer;
+// }
 
-.mypage {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-image: url(../image/20201105_075338519_iOS.JPG);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  position: fixed;
-  top: 25px;
-  right: 80px;
-  cursor: pointer;
-}
+// .mypage {
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 50%;
+//   background-image: url(../image/20201105_075338519_iOS.JPG);
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   background-size: cover;
+//   position: fixed;
+//   top: 25px;
+//   right: 80px;
+//   cursor: pointer;
+// }
 
 .menu {
   width: 70px;
@@ -193,7 +197,7 @@ html,body {
   }
 }
 
-.sp-header {
+.header {
   width: 60%;
   max-width: 400px;
   height: 100vh;
@@ -205,7 +209,7 @@ html,body {
   -webkit-transform: translateX(100%);
   transform: translateX(100%);
   transition: all .7s ease-in-out;
-  .sp-header-nav {
+  .header-nav {
     position: relative;
     padding-top: 100px;
     li {
@@ -238,7 +242,7 @@ html,body {
       }
     }
   }
-  .setting-spnav {
+  .setting-nav {
     color: gray;
     padding-top: 10px;
     position: fixed;
@@ -246,7 +250,7 @@ html,body {
     right: 20px;
     cursor: pointer;
   }
-  .mypage-spnav {
+  .mypage-nav {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -283,9 +287,9 @@ html,body {
     top: 10px;
     right: 10px;
   }
-  .sp-header {
+  .header {
     width: 70%;
-    .sp-header-nav {
+    .header-nav {
       position: relative;
       padding-top: 120px;
       li {

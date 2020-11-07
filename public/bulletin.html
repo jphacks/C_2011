@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title></title>
   <link rel="stylesheet" type="text/css" href="stylesheets/common.css">
-  <link rel="stylesheet" type="text/css" href="stylesheets/bulltein.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/bulletin.css">
   <!--fontawesome読み込み-->
   <script src="https://kit.fontawesome.com/cbd8ebf0e0.js" crossorigin="anonymous"></script>
   <!-- jQuery読み込み -->
@@ -38,37 +38,38 @@
 </head>
 
 <body>
-
   <div class="logo">仮ロゴ</div>
-  <div class="setting sp-none"><i class="fas fa-cog fa-2x"></i></div>
-  <div class="mypage sp-none"></div>
-  <div class="menu pc-none"><span></span></div>
-  <div class="sp-header">
-    <ul class="sp-header-nav">
+  <div class="menu"><span></span></div>
+  <div class="header">
+    <ul class="header-nav">
       <li><a href="/">HOME</a></li>
       <li><a href="/timer">タイム計測</a></li>
       <li><a href="">練習メニュー管理（準備中）</a></li>
       <li><a href="./bulletin.html">タイムライン（準備中）</a></li>
       <li><a href="">マイページ（準備中）</a></li>
     </ul>
-    <div class="setting-spnav"><i class="fas fa-cog fa-2x"></i></div>
-    <div class="mypage-spnav"></div>
+    <div class="setting-nav"><i class="fas fa-cog fa-2x"></i></div>
+    <div class="mypage-nav"></div>
   </div>
-  <div class="input-chat">
-    <div class="input-title">
-      <input type="text" id="title" placeholder="title（任意）">
+  <div class="container">
+    <div class="input-chat">
+      <!-- <div class="mypage-input"></div> -->
+      <div class="input-title">
+        <input type="text" id="title" placeholder="title（任意）">
+      </div>
+      <div class="input-content">
+        <textarea id="content" placeholder="message（必須）"></textarea>
+      </div>
+      <div class="input-person">
+        <input type="text" id="person" placeholder="name">
+      </div>
+      <div class="submit-btn">
+        <button id="post">投稿</button>
+      </div>
     </div>
-    <div class="input-content">
-      <textarea id="content" placeholder="message（必須）"></textarea>
-    </div>
-    <div class="input-person">
-      <input type="text" id="person" placeholder="name">
-    </div>
-    <div>
-      <button id="post">投稿する</button>
-    </div>
+    <div id="todo_list"></div>
+
   </div>
-  <div id="todo_list"></div>
 
   <!-- html->bodyの内容はここまで --------------------->
 
@@ -122,9 +123,8 @@
     });
   </script>
 
-
-  <div class="copy">2020 NitechT&F@JPHACKS2020 All Right Reserver</div>
-
+<!--     
+<div class="copy">2020 NitechT&F@JPHACKS2020 All Right Reserver</div> -->
 
   <script type="text/javascript" src="javascripts/common.js"></script>
 </body>

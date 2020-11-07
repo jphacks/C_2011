@@ -2,13 +2,12 @@
   width: 80%;
   max-width: 1400px;
   height: 100vh;
-  display: flex;
   margin: 0 auto;
   position: relative;
 }
 
 .manage-box {
-  width: 60%;
+  width: 100%;
   position: relative;
 }
 
