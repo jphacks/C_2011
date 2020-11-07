@@ -22,7 +22,7 @@
   width: 90%;
   height: 200px;
   background-color: rgba(0, 0, 0, 0.534);
-  position: absolute;
+  position: fixed;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
@@ -110,7 +110,7 @@
   .manage-box .mana-balloon {
     width: 90%;
     height: 150px;
-    bottom: 300px;
+    bottom: 50px;
     padding: 30px 10px;
   }
   .manage-box .mana-balloon .mana-text {
