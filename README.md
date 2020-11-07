@@ -1,6 +1,7 @@
 # ManagerAssistant
 
-[![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2020/09/JPHACKS2020_ogp.jpg)](https://www.youtube.com/watch?v=G5rULR53uMk)
+[![IMAGE ALT TEXT HERE](/public/image/messageImage_1604731398965.jpg)](https://youtu.be/-dMYhEcpSI4)
+[デモページ:https://c2011-webapp.web.app](https://c2011-webapp.web.app)
 
 ## 製品概要
 ### 陸上×Tech
