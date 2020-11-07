@@ -140,6 +140,7 @@ const leaveStr = "leave all people!";
 var detection_stat = leaveStr;
 function detect() {
     if (personCounter_list.length >= 4) {
+        // 「誰もいない→誰か映り込む」を検出
         if ((personCounter_list[0].count == 0
             && personCounter_list[1].count == 0
             && personCounter_list[2].count > 0
@@ -149,6 +150,7 @@ function detect() {
                 && personCounter_list[2].count > 0
                 && personCounter_list[3].count > 0)) {
             if (detection_stat.indexOf(leaveStr) >= 0) {
+                // timer.jsが読み込まれているときは，スプリット
                 if (typeof TimerSplitFunction !== "undefined"
                     && timer_state.indexOf("start")>=0
                     && $("input[name=use-video]:checked").val() === "goal") {
@@ -159,6 +161,7 @@ function detect() {
                 console.log(comingStr);
             }
         }
+        // 「誰か映っている→誰も映っていない」を検出
         else if ((personCounter_list[0].count > 0
             && personCounter_list[1].count > 0
             && personCounter_list[2].count == 0
@@ -168,6 +171,7 @@ function detect() {
                 && personCounter_list[2].count == 0
                 && personCounter_list[3].count == 0)) {
             if (detection_stat.indexOf(comingStr) >= 0) {
+                // timer.jsが読み込まれているとき，タイマーをスタート
                 if (typeof TimerStartFunction !== "undefined"
                     && timer_state.indexOf("stop")>=0
                     && $("input[name=use-video]:checked").val() === "start") {
