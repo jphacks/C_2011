@@ -8,7 +8,7 @@ $(function(){
 
   // ヘッダー展開
   function navOpen() {
-    $('.sp-header').toggleClass('show');
+    $('.header').toggleClass('show');
   }
 
     // ハンバーガーメニュー
