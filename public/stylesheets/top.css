@@ -9,13 +9,14 @@
 .manage-box {
   width: 100%;
   position: relative;
+  padding-top: 20%;
 }
 
 .manage-box img {
   width: 80%;
   max-width: 450px;
   display: block;
-  margin: 20% auto 0;
+  margin: 0% auto 0;
 }
 
 .manage-box .mana-balloon {
