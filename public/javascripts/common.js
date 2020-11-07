@@ -1,20 +1,20 @@
 $(function(){
 
 
-  function stopload() {
-    $('#loading-wrap').delay(900).fadeOut(800);
-    $('html,body').css('overflow', 'visible');
-  }
+  // function stopload() {
+  //   $('#loading-wrap').delay(900).fadeOut(800);
+  //   $('html,body').css('overflow', 'visible');
+  // }
 
-  $('html,body').css('overflow', 'hidden');
+  // $('html,body').css('overflow', 'hidden');
 
-  $(window).load(function () {
-    stopload();
-    });
+  // $(window).load(function () {
+  //   stopload();
+  //   });
 
-  setTimeout(function(){
-		$('#loading-wrap .img').fadeIn(1000);
-	},500);
+  // setTimeout(function(){
+	// 	$('#loading-wrap .img').fadeIn(1000);
+	// },500);
 
 
   // メニュー開閉
