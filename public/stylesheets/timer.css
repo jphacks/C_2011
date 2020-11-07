@@ -3,6 +3,8 @@ body {
     background-color: rgb(199, 199, 199);
     width: 100%;
     overflow-x: hidden;
+    position: absolute;
+    top: 0;
 }
 /*=== header ================================================*/
 #timer-title {
