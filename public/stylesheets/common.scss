@@ -94,6 +94,9 @@ html,body {
   pointer-events: stroke !important;
 }
 
+.body {
+  position: relative;
+}
 
 
 .logo {
@@ -105,6 +108,7 @@ html,body {
   position: fixed;
   top: 10px;
   left: 10px;
+  z-index: 10;
 }
 
 // .setting {

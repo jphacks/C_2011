@@ -1,0 +1,212 @@
+.container {
+  width: 80%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: 100px;
+}
+
+.input-chat {
+  border-bottom: 1px black solid;
+  // border-right: 1px black solid;
+  // border-left: 1px black solid;
+  padding: 100px 20px 20px;
+  margin: 0px 0 80px;
+  .input-title {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    border-left: rgb(211, 61, 61) 5px solid;
+    input {
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      margin: 0 auto;
+      padding: 0 20px;
+      border: none;
+      &:focus {
+        box-shadow: 0 0 1px 0  rgb(211, 61, 61);
+        outline: 0;
+      }
+    }
+  }
+  .input-content {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    border-left: rgb(211, 61, 61) 5px solid;
+    textarea {
+      width: 100%;
+      height: 60px;
+      line-height: 1.6rem;
+      margin: 0 auto;
+      padding: 10px 20px;
+      border: none;
+      resize: none;
+      &:focus {
+        box-shadow: 0 0 1px 0  rgb(211, 61, 61);
+        outline: 0;
+      }
+    }
+  }
+  .input-person {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    border-left: rgb(211, 61, 61) 5px solid;
+    input {
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      margin: 0 auto;
+      padding: 0 20px;
+      border: none;
+      &:focus {
+        box-shadow: 0 0 1px 0  rgb(211, 61, 61);
+        outline: 0;
+      }
+    }
+  }
+  .mypage-input {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-image: url(../image/20201105_075338519_iOS.JPG);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;;
+    cursor: pointer;
+  }
+  .submit-btn {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-align: right;
+    button {
+      width: 100px;
+      height: 40px;
+      line-height: 28px;
+      text-align: center;
+      box-sizing: border-box;
+      background-color: white;
+      color: rgb(211, 61, 61);
+      border: double 7px rgb(211, 61, 61);
+      border-radius: 10px;
+      transition: all .3s;
+      &:hover {
+        background-color: rgb(211, 61, 61);
+        color:white;
+        border: double 7px white;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 560px) {
+.input-chat {
+  border-bottom: 1px black solid;
+  padding: 100px 0px 20px;
+  margin: 0px 0 80px;
+  .input-title {
+    width: 85%;
+    margin: 20px 0;
+    input {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      padding: 0 10px;
+    }
+  }
+  .input-content {
+    width: 85%;
+    margin: 20px 0;
+    textarea {
+      width: 100%;
+      height: 60px;
+      padding: 3px 10px;
+    }
+  }
+  .input-person {
+    width: 85%;
+    margin: 20px 0;
+    input {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+  }
+  .submit-btn {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+    button {
+      width: 100px;
+      height: 40px;
+      line-height: 28px;
+      text-align: center;
+      box-sizing: border-box;
+      background-color: white;
+      color: rgb(211, 61, 61);
+      border: double 7px rgb(211, 61, 61);
+      border-radius: 10px;
+      transition: all .3s;
+      &:hover {
+        background-color: rgb(211, 61, 61);
+        color:white;
+        border: double 7px white;
+      }
+    }
+  }
+}
+}
+
+#todo_list {
+  padding: 20px;
+  margin: 0;
+  .chat {
+    width: 80%;
+    margin: 50px auto;
+    position: relative;
+    .title {
+      height: 50px;
+      line-height: 50px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .content {
+      // height: 30px;
+      line-height: 1.6rem;
+      font-size: 16px;
+    }
+    .person {
+      margin: 30px 0;
+      position: relative;
+      // text-align: right;
+      padding-left: 60px;
+      &::before {
+        content: "from";
+        position: absolute;
+        left: 0px;
+      }
+    }
+    .done {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 100px;
+      height: 40px;
+      line-height: 28px;
+      text-align: center;
+      box-sizing: border-box;
+      background-color: white;
+      color: rgb(211, 61, 61);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+}
